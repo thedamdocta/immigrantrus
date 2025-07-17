@@ -46,8 +46,8 @@ export function LawFirmHeroSection() {
                             />
                         </div>
                         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-lawfirm-primary/90 via-lawfirm-primary/80 to-black/80"></div>
-                        <div className="mx-auto max-w-7xl px-6">
-                            <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
+                        <div className="mx-auto max-w-7xl px-6 relative z-10">
+                            <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0 py-20">
                                 <div className="hover:bg-background/10 bg-white/10 group mx-auto flex w-fit items-center gap-4 rounded-full border border-white/20 p-1 pl-4 shadow-md backdrop-blur-sm transition-all duration-300 mb-8">
                                     <span className="text-white text-sm">Trusted Legal Partners Since 2003</span>
                                     <span className="block h-4 w-0.5 border-l bg-white/30"></span>
@@ -63,25 +63,25 @@ export function LawFirmHeroSection() {
                                     </div>
                                 </div>
                     
-                                <h1 className="mt-8 max-w-4xl mx-auto text-balance text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem] font-serif text-white font-semibold">
+                                <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl md:text-6xl lg:text-7xl font-serif text-white font-semibold leading-tight mb-6">
                                     Your Trusted Partner in Law
                                 </h1>
-                                <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-white/90 font-sans">
+                                <p className="mx-auto mt-8 max-w-2xl text-balance text-lg md:text-xl text-white/90 font-sans leading-relaxed mb-12">
                                     Expert legal representation with decades of experience. From immigration to estate planning, we're here to protect your rights and secure your future.
                                 </p>
 
-                                <div className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
+                                <div className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
                                     <div className="bg-lawfirm-accent/20 rounded-[14px] border border-lawfirm-accent/30 p-0.5">
                                         <Button
                                             size="lg"
-                                            className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-xl px-5 text-base font-semibold">
+                                            className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-xl px-8 py-4 text-lg font-semibold">
                                             <span className="text-nowrap">Schedule Consultation</span>
                                         </Button>
                                     </div>
                                     <Button
                                         size="lg"
                                         variant="ghost"
-                                        className="h-10.5 rounded-xl px-5 text-white hover:bg-white/10 hover:text-white">
+                                        className="rounded-xl px-8 py-4 text-lg text-white hover:bg-white/10 hover:text-white border border-white/20">
                                         <span className="text-nowrap">Our Practice Areas</span>
                                     </Button>
                                 </div>

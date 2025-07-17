@@ -64,13 +64,13 @@ export function LawFirmHeroSection() {
                             </div>
                         </div>
                         
-                        {/* Main Headline - BLACK TEXT */}
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-gray-900 font-bold leading-tight mb-8">
+                        {/* Main Headline - BLACK TEXT WITH SHADOW */}
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-gray-900 font-bold leading-tight mb-8 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(255,255,255,0.8)'}}>
                             Your Trusted Partner in Law
                         </h1>
                         
-                        {/* Subtitle - DARK GRAY TEXT */}
-                        <p className="text-xl md:text-2xl text-gray-700 font-sans leading-relaxed mb-12 max-w-3xl mx-auto">
+                        {/* Subtitle - DARK GRAY TEXT WITH SHADOW */}
+                        <p className="text-xl md:text-2xl text-gray-700 font-sans leading-relaxed mb-12 max-w-3xl mx-auto drop-shadow-md" style={{textShadow: '1px 1px 2px rgba(255,255,255,0.8)'}}>
                             Expert legal representation with decades of experience. From immigration to estate planning, we're here to protect your rights and secure your future.
                         </p>
 

@@ -37,11 +37,11 @@ export function LawFirmHeroSection() {
                     <div className="h-[80rem] -translate-y-[350px] absolute left-0 top-0 w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
                 <section className="relative h-screen flex items-center justify-center">
-                    {/* Background Image - Even More Visible */}
+                    {/* Background Image - Custom Law Firm Image */}
                     <div className="absolute inset-0 -z-20">
                         <img
-                            src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                            alt="Legal background"
+                            src="https://storage.googleapis.com/msgsndr/4lo83zDKzLDOxLs4aFdb/media/6878b8c1e8df54116591b640.png"
+                            alt="Law firm background"
                             className="w-full h-full object-cover opacity-60"
                         />
                     </div>

@@ -427,10 +427,10 @@ export default function HomePage() {
             <div>
               <h4 className="font-semibold mb-4">Practice Areas</h4>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li><a href="#" className="hover:text-white transition-colors">Family Law</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Immigration Law</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Estate Planning</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Immigration</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Corporate Law</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Trust & Will</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Naturalization</a></li>
               </ul>
             </div>
             <div>

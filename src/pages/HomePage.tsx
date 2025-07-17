@@ -419,7 +419,7 @@ export default function HomePage() {
           
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div>
-              <h4 className="text-xl font-serif font-semibold mb-4">DC LAWYERS</h4>
+              <h4 className="text-xl font-serif font-semibold mb-4">Immigrants R Us</h4>
               <p className="text-gray-300 text-sm">
                 Your trusted partner in legal matters, providing expert representation and personalized service.
               </p>

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { LawFirmHeroSection } from "@/components/ui/law-firm-hero"
 import { 
   Scale, 
   Users, 
@@ -28,7 +29,6 @@ import {
 import { useState } from "react"
 
 export default function HomePage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   const toggleFaq = (index: number) => {
@@ -37,122 +37,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="fixed w-full top-0 z-50 bg-lawfirm-primary backdrop-blur-md shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <div className="flex items-center">
-              <h1 className="text-2xl font-serif font-medium text-white tracking-wide">
-                DC LAWYERS
-              </h1>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
-              <a href="#home" className="text-white hover:underline font-sans font-medium transition-all duration-200">Home</a>
-              <a href="#about" className="text-white hover:underline font-sans font-medium transition-all duration-200">About Us</a>
-              <a href="#practice" className="text-white hover:underline font-sans font-medium transition-all duration-200">Practice Areas</a>
-              <a href="#team" className="text-white hover:underline font-sans font-medium transition-all duration-200">Team</a>
-              <a href="#blog" className="text-white hover:underline font-sans font-medium transition-all duration-200">Blog</a>
-              <a href="#contact" className="text-white hover:underline font-sans font-medium transition-all duration-200">Contact</a>
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden md:flex">
-              <Button 
-                className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white font-sans font-medium rounded-lg px-6 py-3"
-              >
-                Get in Touch
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden p-2 text-white"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Menu className="h-6 w-6" />
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden bg-lawfirm-primary border-t border-white/10">
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                <a href="#home" className="block px-3 py-2 text-white hover:bg-white/10 rounded-md">Home</a>
-                <a href="#about" className="block px-3 py-2 text-white hover:bg-white/10 rounded-md">About Us</a>
-                <a href="#practice" className="block px-3 py-2 text-white hover:bg-white/10 rounded-md">Practice Areas</a>
-                <a href="#team" className="block px-3 py-2 text-white hover:bg-white/10 rounded-md">Team</a>
-                <a href="#blog" className="block px-3 py-2 text-white hover:bg-white/10 rounded-md">Blog</a>
-                <a href="#contact" className="block px-3 py-2 text-white hover:bg-white/10 rounded-md">Contact</a>
-                <div className="px-3 py-2">
-                  <Button className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
-                    Get in Touch
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center pt-20">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-lawfirm-primary/90 via-lawfirm-primary/80 to-black/70"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
-          }}
-        ></div>
-        
-        {/* Content */}
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl font-serif font-semibold mb-6 leading-tight">
-            Your Trusted Partner in Law
-          </h1>
-          <p className="text-xl md:text-2xl mb-12 font-sans leading-relaxed max-w-2xl mx-auto">
-            Professional legal support for every case
-          </p>
-          <Button 
-            size="lg"
-            className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white px-8 py-6 text-lg font-sans font-semibold rounded-lg h-auto"
-          >
-            Learn More
-          </Button>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                alt="Legal team"
-                className="rounded-lg shadow-lg w-full h-96 object-cover"
-              />
-            </div>
-            <div>
-              <h2 className="text-4xl font-serif font-semibold text-lawfirm-text mb-6">
-                Experienced Legal Professionals
-              </h2>
-              <p className="text-lg text-lawfirm-subtext leading-relaxed mb-6">
-                With over two decades of combined experience, our team of dedicated attorneys has successfully represented thousands of clients across various practice areas. We understand that legal matters can be overwhelming, which is why we're committed to providing personalized, compassionate service.
-              </p>
-              <p className="text-lg text-lawfirm-subtext leading-relaxed mb-8">
-                From complex corporate transactions to sensitive family matters, we bring the expertise and dedication needed to achieve the best possible outcomes for our clients.
-              </p>
-              <Button className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white px-6 py-3 rounded-lg">
-                Meet Our Team
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* New Animated Hero Section */}
+      <LawFirmHeroSection />
 
       {/* Stats Section */}
       <section className="py-16 bg-lawfirm-secondaryBackground">
@@ -185,6 +71,35 @@ export default function HomePage() {
               </div>
               <div className="text-3xl font-serif font-semibold text-lawfirm-text mb-2">100+</div>
               <div className="text-lawfirm-subtext font-sans">Testimonials</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                alt="Legal team"
+                className="rounded-lg shadow-lg w-full h-96 object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-4xl font-serif font-semibold text-lawfirm-text mb-6">
+                Experienced Legal Professionals
+              </h2>
+              <p className="text-lg text-lawfirm-subtext leading-relaxed mb-6">
+                With over two decades of combined experience, our team of dedicated attorneys has successfully represented thousands of clients across various practice areas. We understand that legal matters can be overwhelming, which is why we're committed to providing personalized, compassionate service.
+              </p>
+              <p className="text-lg text-lawfirm-subtext leading-relaxed mb-8">
+                From complex corporate transactions to sensitive family matters, we bring the expertise and dedication needed to achieve the best possible outcomes for our clients.
+              </p>
+              <Button className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white px-6 py-3 rounded-lg">
+                Meet Our Team
+              </Button>
             </div>
           </div>
         </div>

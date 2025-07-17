@@ -410,7 +410,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h3 className="text-3xl font-serif font-semibold mb-4">Ready to Get Started?</h3>
             <p className="text-xl text-gray-300 mb-8">
-              Join thousands of satisfied clients who trust DC Lawyers
+              Join thousands of satisfied clients who trust Immigrants R Us
             </p>
             <Button className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white px-8 py-3 text-lg">
               Schedule Consultation

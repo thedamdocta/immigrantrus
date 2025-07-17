@@ -377,7 +377,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <MapPin className="h-6 w-6 text-lawfirm-accent" />
-                    <span className="text-lawfirm-text font-semibold">Washington, DC</span>
+                    <span className="text-lawfirm-text font-semibold">New York, NY</span>
                   </div>
                 </div>
               </div>

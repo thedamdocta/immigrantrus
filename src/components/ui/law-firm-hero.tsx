@@ -182,7 +182,7 @@ const LawFirmHeroHeader = () => {
                             <div className="flex items-center space-x-2">
                                 <Scale className="h-8 w-8 text-lawfirm-accent" />
                                 <h1 className="text-2xl font-serif font-medium text-gray-900 tracking-wide">
-                                    DC LAWYERS
+                                    Immigrants R Us
                                 </h1>
                             </div>
 

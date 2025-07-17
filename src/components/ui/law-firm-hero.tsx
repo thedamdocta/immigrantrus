@@ -38,41 +38,14 @@ export function LawFirmHeroSection() {
                 </div>
                 <section>
                     <div className="relative pt-24 md:pt-36">
-                        <AnimatedGroup
-                            variants={{
-                                container: {
-                                    visible: {
-                                        transition: {
-                                            delayChildren: 1,
-                                        },
-                                    },
-                                },
-                                item: {
-                                    hidden: {
-                                        opacity: 0,
-                                        y: 20,
-                                    },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: {
-                                            type: 'spring',
-                                            bounce: 0.3,
-                                            duration: 2,
-                                        },
-                                    },
-                                },
-                            }}
-                            className="absolute inset-0 -z-20">
+                        <div className="absolute inset-0 -z-20">
                             <img
                                 src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                                 alt="Legal background"
-                                className="absolute inset-x-0 top-56 -z-20 opacity-20 lg:top-32 w-full h-full object-cover"
-                                width="3276"
-                                height="4095"
+                                className="w-full h-full object-cover opacity-40"
                             />
-                        </AnimatedGroup>
-                        <div aria-hidden className="absolute inset-0 -z-10 size-full bg-gradient-to-br from-lawfirm-primary/95 via-lawfirm-primary/80 to-black/70" />
+                        </div>
+                        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-lawfirm-primary/90 via-lawfirm-primary/80 to-black/80"></div>
                         <div className="mx-auto max-w-7xl px-6">
                             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                                 <div className="hover:bg-background/10 bg-white/10 group mx-auto flex w-fit items-center gap-4 rounded-full border border-white/20 p-1 pl-4 shadow-md backdrop-blur-sm transition-all duration-300 mb-8">

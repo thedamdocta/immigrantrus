@@ -453,7 +453,7 @@ export default function HomePage() {
           </div>
           
           <div className="border-t border-gray-700 pt-8 text-center text-gray-300 text-sm">
-            <p>&copy; 2024 DC Lawyers. All rights reserved. | Attorney Advertising | Prior results do not guarantee a similar outcome.</p>
+            <p>&copy; 2024 Immigrants R Us. All rights reserved. | Attorney Advertising | Prior results do not guarantee a similar outcome.</p>
           </div>
         </div>
       </footer>

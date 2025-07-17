@@ -95,7 +95,7 @@ export default function HomePage() {
                 With over two decades of combined experience, our team of dedicated attorneys has successfully represented thousands of clients across various practice areas. We understand that legal matters can be overwhelming, which is why we're committed to providing personalized, compassionate service.
               </p>
               <p className="text-lg text-lawfirm-subtext leading-relaxed mb-8">
-                From complex corporate transactions to sensitive family matters, we bring the expertise and dedication needed to achieve the best possible outcomes for our clients.
+                From complex immigration cases to detailed estate planning, we bring the expertise and dedication needed to achieve the best possible outcomes for our clients.
               </p>
               <Button className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white px-6 py-3 rounded-lg">
                 Meet Our Team

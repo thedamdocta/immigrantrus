@@ -438,7 +438,7 @@ export default function HomePage() {
               <ul className="space-y-2 text-sm text-gray-300">
                 <li>(555) 123-4567</li>
                 <li>marlene@fordelaw.org</li>
-                <li>123 Legal St, Washington, DC</li>
+                <li>New York, NY</li>
               </ul>
             </div>
             <div>

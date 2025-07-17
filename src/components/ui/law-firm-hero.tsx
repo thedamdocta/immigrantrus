@@ -42,12 +42,12 @@ export function LawFirmHeroSection() {
                         <img
                             src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                             alt="Legal background"
-                            className="w-full h-full object-cover opacity-30"
+                            className="w-full h-full object-cover opacity-50"
                         />
                     </div>
                     
                     {/* Light Background Overlay for Text Readability */}
-                    <div className="absolute inset-0 -z-10 bg-white/40"></div>
+                    <div className="absolute inset-0 -z-10 bg-white/30"></div>
                     
                     {/* Hero Content - ALL BLACK TEXT */}
                     <div className="relative z-20 text-center max-w-6xl mx-auto px-4">

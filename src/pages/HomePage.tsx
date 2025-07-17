@@ -172,7 +172,7 @@ export default function HomePage() {
               <CardHeader>
                 <CardTitle className="text-2xl font-serif text-white">Immigration</CardTitle>
                 <CardDescription className="text-gray-200">
-                  Visa applications, green cards, citizenship, and deportation defense
+                  Visa applications, green cards, citizenship, family reunification, and deportation defense
                 </CardDescription>
               </CardHeader>
               <CardContent>

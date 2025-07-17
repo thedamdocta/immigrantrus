@@ -437,7 +437,7 @@ export default function HomePage() {
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-gray-300">
                 <li>(555) 123-4567</li>
-                <li>info@dclawyers.com</li>
+                <li>marlene@fordelaw.org</li>
                 <li>123 Legal St, Washington, DC</li>
               </ul>
             </div>

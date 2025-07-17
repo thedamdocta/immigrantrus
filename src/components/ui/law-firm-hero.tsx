@@ -37,18 +37,23 @@ export function LawFirmHeroSection() {
                     <div className="h-[80rem] -translate-y-[350px] absolute left-0 top-0 w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
                 <section className="relative h-screen flex items-center justify-center">
+                    {/* Background Image */}
                     <div className="absolute inset-0 -z-20">
                         <img
                             src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                             alt="Legal background"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover opacity-30"
                         />
                     </div>
-                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-lawfirm-primary/90 via-lawfirm-primary/80 to-black/80"></div>
                     
-                    <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-4">
-                        <div className="bg-white/10 group mx-auto flex w-fit items-center gap-4 rounded-full border border-white/20 p-1 pl-4 shadow-md backdrop-blur-sm transition-all duration-300 mb-8">
-                            <span className="text-white text-sm">Trusted Legal Partners Since 2003</span>
+                    {/* Dark Gradient Overlay - CRITICAL FOR TEXT READABILITY */}
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-lawfirm-primary/95 via-lawfirm-primary/90 to-black/90"></div>
+                    
+                    {/* Hero Content */}
+                    <div className="relative z-20 text-center text-white max-w-6xl mx-auto px-4">
+                        {/* Badge */}
+                        <div className="bg-white/10 backdrop-blur-sm group mx-auto flex w-fit items-center gap-4 rounded-full border border-white/20 p-1 pl-4 shadow-md transition-all duration-300 mb-8">
+                            <span className="text-white text-sm font-medium">Trusted Legal Partners Since 2003</span>
                             <span className="block h-4 w-0.5 border-l bg-white/30"></span>
                             <div className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 size-6 overflow-hidden rounded-full duration-500">
                                 <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
@@ -62,24 +67,27 @@ export function LawFirmHeroSection() {
                             </div>
                         </div>
                         
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white font-semibold leading-tight mb-8">
+                        {/* Main Headline - ENSURE WHITE TEXT ON DARK BACKGROUND */}
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white font-bold leading-tight mb-8 drop-shadow-lg">
                             Your Trusted Partner in Law
                         </h1>
                         
-                        <p className="text-xl md:text-2xl text-white/90 font-sans leading-relaxed mb-12 max-w-3xl mx-auto">
+                        {/* Subtitle */}
+                        <p className="text-xl md:text-2xl text-white/90 font-sans leading-relaxed mb-12 max-w-3xl mx-auto drop-shadow-md">
                             Expert legal representation with decades of experience. From immigration to estate planning, we're here to protect your rights and secure your future.
                         </p>
 
+                        {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button
                                 size="lg"
-                                className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-xl px-8 py-4 text-lg font-semibold">
+                                className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-xl px-8 py-4 text-lg font-semibold shadow-lg">
                                 Schedule Consultation
                             </Button>
                             <Button
                                 size="lg"
                                 variant="outline"
-                                className="rounded-xl px-8 py-4 text-lg text-white hover:bg-white/10 hover:text-white border-2 border-white/20">
+                                className="rounded-xl px-8 py-4 text-lg text-white hover:bg-white/10 hover:text-white border-2 border-white/30 backdrop-blur-sm">
                                 Our Practice Areas
                             </Button>
                         </div>

@@ -373,7 +373,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <Mail className="h-6 w-6 text-lawfirm-accent" />
-                    <span className="text-lawfirm-text font-semibold">info@dclawyers.com</span>
+                    <span className="text-lawfirm-text font-semibold">marlene@fordelaw.org</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <MapPin className="h-6 w-6 text-lawfirm-accent" />

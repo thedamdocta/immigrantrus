@@ -266,7 +266,7 @@ export default function HomePage() {
                 ))}
               </div>
               <blockquote className="text-2xl font-serif italic text-lawfirm-text leading-relaxed">
-                "The team at DC Lawyers provided exceptional service during my immigration case. Their expertise and dedication made all the difference. I couldn't have asked for better representation."
+                "The team at Immigrants R Us provided exceptional service during my immigration case. Their expertise and dedication made all the difference. I couldn't have asked for better representation."
               </blockquote>
             </div>
             <div className="text-lawfirm-subtext">

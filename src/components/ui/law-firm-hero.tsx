@@ -37,24 +37,24 @@ export function LawFirmHeroSection() {
                     <div className="h-[80rem] -translate-y-[350px] absolute left-0 top-0 w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
                 <section className="relative h-screen flex items-center justify-center">
-                    {/* Background Image */}
+                    {/* Background Image - Heavily Faded But Still Visible */}
                     <div className="absolute inset-0 -z-20">
                         <img
                             src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                             alt="Legal background"
-                            className="w-full h-full object-cover opacity-30"
+                            className="w-full h-full object-cover opacity-10"
                         />
                     </div>
                     
-                    {/* Dark Gradient Overlay - CRITICAL FOR TEXT READABILITY */}
-                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-lawfirm-primary/95 via-lawfirm-primary/90 to-black/90"></div>
+                    {/* Light Background Overlay for Text Readability */}
+                    <div className="absolute inset-0 -z-10 bg-white/60"></div>
                     
-                    {/* Hero Content */}
-                    <div className="relative z-20 text-center text-white max-w-6xl mx-auto px-4">
+                    {/* Hero Content - ALL BLACK TEXT */}
+                    <div className="relative z-20 text-center max-w-6xl mx-auto px-4">
                         {/* Badge */}
-                        <div className="bg-white/10 backdrop-blur-sm group mx-auto flex w-fit items-center gap-4 rounded-full border border-white/20 p-1 pl-4 shadow-md transition-all duration-300 mb-8">
-                            <span className="text-white text-sm font-medium">Trusted Legal Partners Since 2003</span>
-                            <span className="block h-4 w-0.5 border-l bg-white/30"></span>
+                        <div className="bg-gray-100 border border-gray-200 group mx-auto flex w-fit items-center gap-4 rounded-full p-1 pl-4 shadow-md transition-all duration-300 mb-8">
+                            <span className="text-gray-800 text-sm font-medium">Trusted Legal Partners Since 2003</span>
+                            <span className="block h-4 w-0.5 border-l bg-gray-300"></span>
                             <div className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 size-6 overflow-hidden rounded-full duration-500">
                                 <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
                                     <span className="flex size-6">
@@ -67,13 +67,13 @@ export function LawFirmHeroSection() {
                             </div>
                         </div>
                         
-                        {/* Main Headline - ENSURE WHITE TEXT ON DARK BACKGROUND */}
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white font-bold leading-tight mb-8 drop-shadow-lg">
+                        {/* Main Headline - BLACK TEXT */}
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-gray-900 font-bold leading-tight mb-8">
                             Your Trusted Partner in Law
                         </h1>
                         
-                        {/* Subtitle */}
-                        <p className="text-xl md:text-2xl text-white/90 font-sans leading-relaxed mb-12 max-w-3xl mx-auto drop-shadow-md">
+                        {/* Subtitle - DARK GRAY TEXT */}
+                        <p className="text-xl md:text-2xl text-gray-700 font-sans leading-relaxed mb-12 max-w-3xl mx-auto">
                             Expert legal representation with decades of experience. From immigration to estate planning, we're here to protect your rights and secure your future.
                         </p>
 
@@ -87,7 +87,7 @@ export function LawFirmHeroSection() {
                             <Button
                                 size="lg"
                                 variant="outline"
-                                className="rounded-xl px-8 py-4 text-lg text-white hover:bg-white/10 hover:text-white border-2 border-white/30 backdrop-blur-sm">
+                                className="rounded-xl px-8 py-4 text-lg text-gray-800 hover:bg-gray-100 border-2 border-gray-300">
                                 Our Practice Areas
                             </Button>
                         </div>

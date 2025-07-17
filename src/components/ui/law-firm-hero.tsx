@@ -176,12 +176,12 @@ const LawFirmHeroHeader = () => {
             <nav
                 data-state={menuState && 'active'}
                 className="fixed z-50 w-full px-2 group">
-                <div className={cn('mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'bg-lawfirm-primary/90 max-w-4xl rounded-2xl border border-white/20 backdrop-blur-lg lg:px-5')}>
+                <div className={cn('mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'bg-white/90 max-w-4xl rounded-2xl border border-gray-200 backdrop-blur-lg lg:px-5')}>
                     <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                         <div className="flex w-full justify-between lg:w-auto">
                             <div className="flex items-center space-x-2">
                                 <Scale className="h-8 w-8 text-lawfirm-accent" />
-                                <h1 className="text-2xl font-serif font-medium text-white tracking-wide">
+                                <h1 className="text-2xl font-serif font-medium text-gray-900 tracking-wide">
                                     DC LAWYERS
                                 </h1>
                             </div>
@@ -190,8 +190,8 @@ const LawFirmHeroHeader = () => {
                                 onClick={() => setMenuState(!menuState)}
                                 aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
                                 className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                                <Menu className="group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0 m-auto size-6 duration-200 text-white" />
-                                <X className="group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200 text-white" />
+                                <Menu className="group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0 m-auto size-6 duration-200 text-gray-700" />
+                                <X className="group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200 text-gray-700" />
                             </button>
                         </div>
 
@@ -201,7 +201,7 @@ const LawFirmHeroHeader = () => {
                                     <li key={index}>
                                         <a
                                             href={item.href}
-                                            className="text-white/80 hover:text-white block duration-150 font-medium">
+                                            className="text-gray-700 hover:text-lawfirm-accent block duration-150 font-medium">
                                             <span>{item.name}</span>
                                         </a>
                                     </li>
@@ -209,14 +209,14 @@ const LawFirmHeroHeader = () => {
                             </ul>
                         </div>
 
-                        <div className="bg-lawfirm-primary/90 border border-white/20 group-data-[state=active]:block lg:group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl p-6 shadow-2xl backdrop-blur-sm md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none">
+                        <div className="bg-white/90 border border-gray-200 group-data-[state=active]:block lg:group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl p-6 shadow-2xl backdrop-blur-sm md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none">
                             <div className="lg:hidden">
                                 <ul className="space-y-6 text-base">
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
                                             <a
                                                 href={item.href}
-                                                className="text-white/80 hover:text-white block duration-150">
+                                                className="text-gray-700 hover:text-lawfirm-accent block duration-150">
                                                 <span>{item.name}</span>
                                             </a>
                                         </li>
@@ -227,7 +227,7 @@ const LawFirmHeroHeader = () => {
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    className={cn(isScrolled && 'lg:hidden', 'border-white/30 text-white hover:bg-white/10 hover:text-white')}>
+                                    className={cn(isScrolled && 'lg:hidden', 'border-gray-300 text-gray-700 hover:bg-gray-100')}>
                                     <span>Call Now</span>
                                 </Button>
                                 <Button

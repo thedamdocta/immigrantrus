@@ -37,17 +37,14 @@ export function LawFirmHeroSection() {
                     <div className="h-[80rem] -translate-y-[350px] absolute left-0 top-0 w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
                 <section className="relative h-screen flex items-center justify-center">
-                    {/* Background Image - Custom Law Firm Image - NO WHITE OVERLAY */}
+                    {/* Background Image - Custom Law Firm Image - FULL VISIBILITY */}
                     <div className="absolute inset-0 -z-20">
                         <img
                             src="https://storage.googleapis.com/msgsndr/4lo83zDKzLDOxLs4aFdb/media/6878b8c1e8df54116591b640.png"
                             alt="Law firm background"
-                            className="w-full h-full object-cover opacity-80"
+                            className="w-full h-full object-cover"
                         />
                     </div>
-                    
-                    {/* Very Light Background Overlay ONLY for Text Readability */}
-                    <div className="absolute inset-0 -z-10 bg-white/10"></div>
                     
                     {/* Hero Content - ALL BLACK TEXT */}
                     <div className="relative z-20 text-center max-w-6xl mx-auto px-4">

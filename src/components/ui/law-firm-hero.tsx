@@ -36,86 +36,53 @@ export function LawFirmHeroSection() {
                     <div className="h-[80rem] absolute left-0 top-0 w-56 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
                     <div className="h-[80rem] -translate-y-[350px] absolute left-0 top-0 w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
-                <section>
-                    <div className="relative pt-24 md:pt-36">
-                        <div className="absolute inset-0 -z-20">
-                            <img
-                                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                                alt="Legal background"
-                                className="w-full h-full object-cover opacity-40"
-                            />
-                        </div>
-                        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-lawfirm-primary/90 via-lawfirm-primary/80 to-black/80"></div>
-                        <div className="mx-auto max-w-7xl px-6 relative z-10">
-                            <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0 py-20">
-                                <div className="hover:bg-background/10 bg-white/10 group mx-auto flex w-fit items-center gap-4 rounded-full border border-white/20 p-1 pl-4 shadow-md backdrop-blur-sm transition-all duration-300 mb-8">
-                                    <span className="text-white text-sm">Trusted Legal Partners Since 2003</span>
-                                    <span className="block h-4 w-0.5 border-l bg-white/30"></span>
-                                    <div className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 group-hover:bg-lawfirm-accent/80 size-6 overflow-hidden rounded-full duration-500">
-                                        <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                                            <span className="flex size-6">
-                                                <ArrowRight className="m-auto size-3 text-white" />
-                                            </span>
-                                            <span className="flex size-6">
-                                                <ArrowRight className="m-auto size-3 text-white" />
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                <section className="relative h-screen flex items-center justify-center">
+                    <div className="absolute inset-0 -z-20">
+                        <img
+                            src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            alt="Legal background"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-lawfirm-primary/90 via-lawfirm-primary/80 to-black/80"></div>
                     
-                                <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl md:text-6xl lg:text-7xl font-serif text-white font-semibold leading-tight mb-6">
-                                    Your Trusted Partner in Law
-                                </h1>
-                                <p className="mx-auto mt-8 max-w-2xl text-balance text-lg md:text-xl text-white/90 font-sans leading-relaxed mb-12">
-                                    Expert legal representation with decades of experience. From immigration to estate planning, we're here to protect your rights and secure your future.
-                                </p>
-
-                                <div className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
-                                    <div className="bg-lawfirm-accent/20 rounded-[14px] border border-lawfirm-accent/30 p-0.5">
-                                        <Button
-                                            size="lg"
-                                            className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-xl px-8 py-4 text-lg font-semibold">
-                                            <span className="text-nowrap">Schedule Consultation</span>
-                                        </Button>
-                                    </div>
-                                    <Button
-                                        size="lg"
-                                        variant="ghost"
-                                        className="rounded-xl px-8 py-4 text-lg text-white hover:bg-white/10 hover:text-white border border-white/20">
-                                        <span className="text-nowrap">Our Practice Areas</span>
-                                    </Button>
+                    <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-4">
+                        <div className="bg-white/10 group mx-auto flex w-fit items-center gap-4 rounded-full border border-white/20 p-1 pl-4 shadow-md backdrop-blur-sm transition-all duration-300 mb-8">
+                            <span className="text-white text-sm">Trusted Legal Partners Since 2003</span>
+                            <span className="block h-4 w-0.5 border-l bg-white/30"></span>
+                            <div className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 size-6 overflow-hidden rounded-full duration-500">
+                                <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
+                                    <span className="flex size-6">
+                                        <ArrowRight className="m-auto size-3 text-white" />
+                                    </span>
+                                    <span className="flex size-6">
+                                        <ArrowRight className="m-auto size-3 text-white" />
+                                    </span>
                                 </div>
                             </div>
                         </div>
+                        
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white font-semibold leading-tight mb-8">
+                            Your Trusted Partner in Law
+                        </h1>
+                        
+                        <p className="text-xl md:text-2xl text-white/90 font-sans leading-relaxed mb-12 max-w-3xl mx-auto">
+                            Expert legal representation with decades of experience. From immigration to estate planning, we're here to protect your rights and secure your future.
+                        </p>
 
-                        <AnimatedGroup
-                            variants={{
-                                container: {
-                                    visible: {
-                                        transition: {
-                                            staggerChildren: 0.05,
-                                            delayChildren: 0.75,
-                                        },
-                                    },
-                                },
-                                ...transitionVariants,
-                            }}>
-                            <div className="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
-                                <div
-                                    aria-hidden
-                                    className="bg-gradient-to-b from-transparent from-35% to-lawfirm-primary/20 absolute inset-0 z-10"
-                                />
-                                <div className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl border border-white/20 p-4 shadow-lg shadow-black/30 backdrop-blur-sm bg-white/10">
-                                    <img
-                                        className="aspect-[15/8] relative rounded-2xl w-full object-cover"
-                                        src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                                        alt="Legal team at work"
-                                        width="2700"
-                                        height="1440"
-                                    />
-                                </div>
-                            </div>
-                        </AnimatedGroup>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Button
+                                size="lg"
+                                className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-xl px-8 py-4 text-lg font-semibold">
+                                Schedule Consultation
+                            </Button>
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                className="rounded-xl px-8 py-4 text-lg text-white hover:bg-white/10 hover:text-white border-2 border-white/20">
+                                Our Practice Areas
+                            </Button>
+                        </div>
                     </div>
                 </section>
                 <section className="bg-white pb-16 pt-16 md:pb-32">

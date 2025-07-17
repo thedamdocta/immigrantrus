@@ -119,16 +119,16 @@ export default function HomePage() {
             <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
-                  alt="Family Law"
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                  alt="Trust & Will"
                   className="w-full h-48 object-cover"
                 />
                 <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
               </div>
               <CardHeader>
-                <CardTitle className="text-2xl font-serif text-white">Family Law</CardTitle>
+                <CardTitle className="text-2xl font-serif text-white">Trust & Will</CardTitle>
                 <CardDescription className="text-gray-200">
-                  Divorce, custody, adoption, and family mediation services
+                  Comprehensive trust services and will preparation for your family's future
                 </CardDescription>
               </CardHeader>
               <CardContent>

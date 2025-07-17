@@ -46,6 +46,9 @@ export function LawFirmHeroSection() {
                         />
                     </div>
                     
+                    {/* Dark overlay to enhance image contrast */}
+                    <div className="absolute inset-0 -z-10 bg-black/20"></div>
+                    
                     {/* Hero Content - ALL BLACK TEXT */}
                     <div className="relative z-20 text-center max-w-6xl mx-auto px-4">
                         {/* Badge */}

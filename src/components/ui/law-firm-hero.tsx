@@ -61,8 +61,8 @@ export function LawFirmHeroSection() {
                         </div>
                         
                         {/* Main Headline - BLACK TEXT WITH SHADOW */}
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white font-bold leading-tight mb-8 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.6)'}}>
-                            Your Trusted Partner in Law
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white font-bold leading-tight mb-8 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.6)'}}>
+                            Immigrants Helping Immigrants.
                         </h1>
                         
                         {/* Subtitle - DARK GRAY TEXT WITH SHADOW */}

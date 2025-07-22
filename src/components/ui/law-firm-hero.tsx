@@ -3,6 +3,7 @@ import { ArrowRight, ChevronRight, Menu, X, Scale } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { cn } from '@/lib/utils'
+import { animate } from 'framer-motion'
 
 const transitionVariants = {
     item: {
@@ -31,20 +32,12 @@ export function LawFirmHeroSection() {
             <main className="overflow-hidden">
                 <div
                     aria-hidden
-                    className="z-[2] absolute inset-0 pointer-events-none isolate opacity-50 contain-strict hidden lg:block">
+                    className="-z-30 absolute inset-0 pointer-events-none isolate opacity-50 contain-strict hidden lg:block">
                     <div className="w-[35rem] h-[80rem] -translate-y-[350px] absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
                     <div className="h-[80rem] absolute left-0 top-0 w-56 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
                     <div className="h-[80rem] -translate-y-[350px] absolute left-0 top-0 w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
-                <section className="relative h-screen flex items-center justify-center">
-                    {/* Background Image - Custom Law Firm Image - FULL VISIBILITY */}
-                    <div className="absolute inset-0 -z-20">
-                        <img
-                            src="https://storage.googleapis.com/msgsndr/4lo83zDKzLDOxLs4aFdb/media/6878b8c1e8df54116591b640.png"
-                            alt="Law firm background"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                <section className="relative h-screen flex items-center justify-center bg-[url('/hero-image.png')] bg-cover bg-center bg-no-repeat">
                     
                     {/* Dark overlay to enhance image contrast */}
                     <div className="absolute inset-0 -z-10 bg-black/20"></div>
@@ -68,12 +61,12 @@ export function LawFirmHeroSection() {
                         </div>
                         
                         {/* Main Headline - BLACK TEXT WITH SHADOW */}
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-gray-900 font-bold leading-tight mb-8 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(255,255,255,0.8)'}}>
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white font-bold leading-tight mb-8 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.6)'}}>
                             Your Trusted Partner in Law
                         </h1>
                         
                         {/* Subtitle - DARK GRAY TEXT WITH SHADOW */}
-                        <p className="text-xl md:text-2xl text-gray-700 font-sans leading-relaxed mb-12 max-w-3xl mx-auto drop-shadow-md" style={{textShadow: '1px 1px 2px rgba(255,255,255,0.8)'}}>
+                        <p className="text-xl md:text-2xl text-white font-sans leading-relaxed mb-12 max-w-3xl mx-auto drop-shadow-md" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.6)'}}>
                             Expert legal representation with decades of experience. From immigration to estate planning, we're here to protect your rights and secure your future.
                         </p>
 
@@ -90,60 +83,6 @@ export function LawFirmHeroSection() {
                                 className="rounded-xl px-8 py-4 text-lg text-gray-800 hover:bg-gray-100 border-2 border-gray-300">
                                 Our Practice Areas
                             </Button>
-                        </div>
-                    </div>
-                </section>
-                <section className="bg-white pb-16 pt-16 md:pb-32">
-                    <div className="group relative m-auto max-w-5xl px-6">
-                        <div className="absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100">
-                            <div className="text-center">
-                                <p className="text-lawfirm-text text-lg font-serif font-semibold mb-2">
-                                    Trusted by Leading Organizations
-                                </p>
-                                <ChevronRight className="mx-auto size-4 text-lawfirm-accent" />
-                            </div>
-                        </div>
-                        <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14">
-                            <div className="flex">
-                                <div className="mx-auto h-8 w-fit bg-lawfirm-text rounded px-3 py-1 flex items-center">
-                                    <span className="text-white text-xs font-semibold">NYC BAR</span>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="mx-auto h-8 w-fit bg-lawfirm-text rounded px-3 py-1 flex items-center">
-                                    <span className="text-white text-xs font-semibold">AILA</span>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="mx-auto h-8 w-fit bg-lawfirm-text rounded px-3 py-1 flex items-center">
-                                    <span className="text-white text-xs font-semibold">NYSBA</span>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="mx-auto h-8 w-fit bg-lawfirm-text rounded px-3 py-1 flex items-center">
-                                    <span className="text-white text-xs font-semibold">ABA</span>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="mx-auto h-8 w-fit bg-lawfirm-text rounded px-3 py-1 flex items-center">
-                                    <span className="text-white text-xs font-semibold">NAELA</span>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="mx-auto h-8 w-fit bg-lawfirm-text rounded px-3 py-1 flex items-center">
-                                    <span className="text-white text-xs font-semibold">ILRC</span>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="mx-auto h-8 w-fit bg-lawfirm-text rounded px-3 py-1 flex items-center">
-                                    <span className="text-white text-xs font-semibold">CILA</span>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="mx-auto h-8 w-fit bg-lawfirm-text rounded px-3 py-1 flex items-center">
-                                    <span className="text-white text-xs font-semibold">NELA</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -170,6 +109,30 @@ const LawFirmHeroHeader = () => {
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    // Smooth scroll handler using framer-motion
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+        e.preventDefault()
+        const id = href.replace('#', '')
+        const el = document.getElementById(id)
+        if (!el) return
+
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 80 // offset for navbar
+        animate(window.scrollY, y, {
+            duration: 0.8,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            onUpdate: latest => window.scrollTo(0, latest),
+        })
+        setMenuState(false)
+    }
+    
+    const scrollToTop = () => {
+        animate(window.scrollY, 0, {
+            duration: 0.8,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            onUpdate: latest => window.scrollTo(0, latest),
+        })
+    }
     
     return (
         <header>
@@ -179,13 +142,12 @@ const LawFirmHeroHeader = () => {
                 <div className={cn('mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'bg-white/90 max-w-4xl rounded-2xl border border-gray-200 backdrop-blur-lg lg:px-5')}>
                     <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                         <div className="flex w-full justify-between lg:w-auto">
-                            <div className="flex items-center space-x-2">
+                            <button onClick={scrollToTop} className="flex items-center space-x-2 focus:outline-none">
                                 <Scale className="h-8 w-8 text-lawfirm-accent" />
-                                <h1 className="text-2xl font-serif font-medium text-gray-900 tracking-wide">
+                                <span className={cn('text-2xl font-serif font-medium tracking-wide', isScrolled ? 'text-gray-900' : 'text-white')}>
                                     Immigrants R Us
-                                </h1>
-                            </div>
-
+                                </span>
+                            </button>
                             <button
                                 onClick={() => setMenuState(!menuState)}
                                 aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
@@ -201,7 +163,8 @@ const LawFirmHeroHeader = () => {
                                     <li key={index}>
                                         <a
                                             href={item.href}
-                                            className="text-gray-700 hover:text-lawfirm-accent block duration-150 font-medium">
+                                            onClick={(e) => handleLinkClick(e, item.href)}
+                                            className={cn(isScrolled ? 'text-gray-700' : 'text-white', 'hover:text-lawfirm-accent block duration-150 font-medium')}>
                                             <span>{item.name}</span>
                                         </a>
                                     </li>
@@ -216,28 +179,18 @@ const LawFirmHeroHeader = () => {
                                         <li key={index}>
                                             <a
                                                 href={item.href}
-                                                className="text-gray-700 hover:text-lawfirm-accent block duration-150">
+                                                onClick={(e) => handleLinkClick(e, item.href)}
+                                                className={cn(isScrolled ? 'text-gray-700' : 'text-white', 'hover:text-lawfirm-accent block duration-150')}>
                                                 <span>{item.name}</span>
                                             </a>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
-                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className={cn(isScrolled && 'lg:hidden', 'border-gray-300 text-gray-700 hover:bg-gray-100')}>
-                                    <span>Call Now</span>
-                                </Button>
+                            <div className="flex w-full justify-end md:w-fit">
                                 <Button
                                     size="sm"
-                                    className={cn(isScrolled && 'lg:hidden', 'bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white')}>
-                                    <span>Free Consultation</span>
-                                </Button>
-                                <Button
-                                    size="sm"
-                                    className={cn(isScrolled ? 'lg:inline-flex' : 'hidden', 'bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white')}>
+                                    className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white">
                                     <span>Get Started</span>
                                 </Button>
                             </div>

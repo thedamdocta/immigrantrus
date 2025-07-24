@@ -31,7 +31,6 @@ import { TestimonialsColumn } from "@/components/ui/testimonials-columns"
 import { Gallery4 } from "@/components/ui/gallery4"
 import { animate } from "framer-motion"
 import { TextGradientScroll } from "@/components/ui/text-gradient-scroll"
-// @ts-ignore
 import { LogoCarousel } from "@/components/ui/logo-carousel"
 import { FaqSectionWithCategories } from "@/components/ui/faq-with-categories"
 

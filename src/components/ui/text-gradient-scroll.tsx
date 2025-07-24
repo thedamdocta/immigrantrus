@@ -94,7 +94,7 @@ type TextOpacityEnum = "none" | "soft" | "medium";
    );
  };
 
- const Letter = ({ children, progress, range }: LetterType) => {
+ const Letter = ({ children, progress, range }: LetterType): JSX.Element | null => {
    if (typeof children === "string") {
      const amount = range[1] - range[0];
      const step = amount / children.length;
@@ -113,6 +113,7 @@ type TextOpacityEnum = "none" | "soft" | "medium";
        </span>
      );
    }
+   return null;
  };
 
  const Char = ({ children, progress, range }: CharType) => {

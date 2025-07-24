@@ -46,7 +46,7 @@ export function LawFirmHeroSection() {
                     <div className="relative z-20 text-center max-w-6xl mx-auto px-4">
                         {/* Badge */}
                         <div className="bg-gray-100 border border-gray-200 group mx-auto flex w-fit items-center gap-4 rounded-full p-1 pl-4 shadow-md transition-all duration-300 mb-8">
-                            <span className="text-gray-800 text-sm font-medium">Trusted Legal Partners Since 2003</span>
+                            <span className="text-gray-800 text-sm font-medium">Trusted Advisors Since 1994</span>
                             <span className="block h-4 w-0.5 border-l bg-gray-300"></span>
                             <div className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 size-6 overflow-hidden rounded-full duration-500">
                                 <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
@@ -67,7 +67,7 @@ export function LawFirmHeroSection() {
                         
                         {/* Subtitle - DARK GRAY TEXT WITH SHADOW */}
                         <p className="text-xl md:text-2xl text-white font-sans leading-relaxed mb-12 max-w-3xl mx-auto drop-shadow-md" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.6)'}}>
-                            Expert legal representation with decades of experience. From immigration to estate planning, we're here to protect your rights and secure your future.
+                            Expert legal representation with decades of experience.<br className="hidden md:block"/>From immigration, estate planning to wealth building.<br className="hidden md:block"/>We're here to help you and to protect your rights.
                         </p>
 
                         {/* CTA Buttons */}

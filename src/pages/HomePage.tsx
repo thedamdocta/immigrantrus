@@ -29,6 +29,10 @@ import {
 import { useState } from "react"
 import { TestimonialsColumn } from "@/components/ui/testimonials-columns"
 import { Gallery4 } from "@/components/ui/gallery4"
+import { animate } from "framer-motion"
+import { TextGradientScroll } from "@/components/ui/text-gradient-scroll"
+// @ts-ignore
+import { LogoCarousel } from "@/components/ui/logo-carousel"
 import { FaqSectionWithCategories } from "@/components/ui/faq-with-categories"
 
 export default function HomePage() {
@@ -79,28 +83,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Flag Carousel */}
+      <LogoCarousel />
+
       {/* About Section */}
-      <section id="about" className="py-24 bg-white">
+      <section id="about" className="pt-12 pb-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                alt="Legal team"
-                className="rounded-lg shadow-lg w-full h-96 object-cover"
-              />
-            </div>
-            <div>
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center">
               <h2 className="text-4xl font-serif font-semibold text-lawfirm-text mb-6">
-                Experienced Legal Professionals
+                Experienced Professionals
               </h2>
-              <p className="text-lg text-lawfirm-subtext leading-relaxed mb-6">
-                With over two decades of combined experience, our team of dedicated attorneys has successfully represented thousands of clients across various practice areas. We understand that legal matters can be overwhelming, which is why we're committed to providing personalized, compassionate service.
-              </p>
-              <p className="text-lg text-lawfirm-subtext leading-relaxed mb-8">
-                From complex immigration cases to detailed estate planning, we bring the expertise and dedication needed to achieve the best possible outcomes for our clients.
-              </p>
-              <Button className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white px-6 py-3 rounded-lg">
+              <TextGradientScroll
+                className="text-lg text-lawfirm-subtext leading-relaxed mb-8 max-w-prose mx-auto justify-center"
+                text="Starting a new life in a new country isn’t easy. But you don’t have to do it alone. At Immigrants R Us we are immigrants helping immigrants—we understand your journey because we’ve lived it too. We’re a team of licensed professionals and immigrants who know exactly what it takes to navigate the complex immigration process. Whether you’re applying for a visa, green card, citizenship, or asylum—we’re here to guide you every step of the way. With honesty. With compassion. With experience. We’ve helped hundreds of families find safety, opportunity, and a fresh start—and we’re ready to help yours. Call us today or complete a consultation request. Immigrants R Us—because who better to help than someone who’s been there? Your journey. Our mission."
+              />
+              <Button
+                className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white px-6 py-3 rounded-lg mx-auto block"
+                onClick={() => {
+                  const el = document.getElementById("team");
+                  if (!el) return;
+                  const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+                  animate(window.scrollY, y, {
+                    duration: 0.8,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    onUpdate: (latest) => window.scrollTo(0, latest),
+                  });
+                }}
+              >
                 Meet Our Team
               </Button>
             </div>
@@ -114,12 +124,12 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-serif font-semibold text-lawfirm-text mb-6">Practice Areas</h2>
             <p className="text-xl text-lawfirm-subtext max-w-2xl mx-auto">
-              We provide comprehensive legal services across multiple practice areas
+              We provide comprehensive<br className="hidden md:block" /> legal services across multiple practice areas
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
@@ -134,14 +144,14 @@ export default function HomePage() {
                   Comprehensive trust services and will preparation for your family's future
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <Button className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
+              <CardContent className="mt-auto">
+                <Button onClick={() => window.location.href = '#contact'} className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
                   Learn More
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden">
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
@@ -153,17 +163,17 @@ export default function HomePage() {
               <CardHeader>
                 <CardTitle className="text-2xl font-serif text-white">Estate Planning</CardTitle>
                 <CardDescription className="text-gray-200">
-                  Wills, trusts, probate, and estate administration
+                  Legacy building for your generations to come
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <Button className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
+              <CardContent className="mt-auto">
+                <Button onClick={() => window.location.href = '#contact'} className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
                   Learn More
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden">
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1184&q=80"
@@ -178,8 +188,123 @@ export default function HomePage() {
                   Visa applications, green cards, citizenship, family reunification, and deportation defense
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <Button className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
+              <CardContent className="mt-auto">
+                <Button onClick={() => window.location.href = '#contact'} className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
+                  Learn More
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Credit Repair */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+              <div className="relative">
+                <img 
+                  src="/credit-report.jpg"
+                  alt="Credit Repair"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
+              </div>
+              <CardHeader>
+                <CardTitle className="text-2xl font-serif text-white">Credit Repair</CardTitle>
+                <CardDescription className="text-gray-200">
+                  Fix your credit issues by speaking to one of our experts
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button onClick={() => window.location.href = '#contact'} className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
+                  Learn More
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Mortgage */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                  alt="Mortgage"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
+              </div>
+              <CardHeader>
+                <CardTitle className="text-2xl font-serif text-white">Mortgage</CardTitle>
+                <CardDescription className="text-gray-200">
+                  Get home financing – purchase or refinance
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button onClick={() => window.location.href = '#contact'} className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
+                  Learn More
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Real Estate */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                  alt="Real Estate"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
+              </div>
+              <CardHeader>
+                <CardTitle className="text-2xl font-serif text-white">Real Estate</CardTitle>
+                <CardDescription className="text-gray-200">
+                  Work with experts to identify your new home away from home
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button onClick={() => window.location.href = '#contact'} className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
+                  Learn More
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Personal Injury */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1489171078254-c3365d6e359f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                  alt="Personal Injury"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
+              </div>
+              <CardHeader>
+                <CardTitle className="text-2xl font-serif text-white">Personal Injury</CardTitle>
+                <CardDescription className="text-gray-200">
+                  Have you or a family member been hurt? Let us help you
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button onClick={() => window.location.href = '#contact'} className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
+                  Learn More
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Other */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                  alt="Other"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
+              </div>
+              <CardHeader>
+                <CardTitle className="text-2xl font-serif text-white">Other</CardTitle>
+                <CardDescription className="text-gray-200">
+                  All other services needing expert guidance – reach out today
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button onClick={() => window.location.href = '#contact'} className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white w-full">
                   Learn More
                 </Button>
               </CardContent>
@@ -194,7 +319,7 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-serif font-semibold text-lawfirm-text mb-6">Why Choose Us</h2>
             <p className="text-xl text-lawfirm-subtext max-w-2xl mx-auto">
-              We're committed to providing exceptional legal services with personalized attention
+              We're committed to providing exceptional<br className="hidden md:block" /> legal services with personalized attention
             </p>
           </div>
           
@@ -235,8 +360,24 @@ export default function HomePage() {
           
           <div className="flex flex-wrap justify-center gap-8">
             {[
-              { name: "Marlene Forde", role: "Senior Partner", image: "/marlene-forde.jpg" },
-              { name: "Michelle Rodriguez", role: "Immigration Attorney", image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" }
+              {
+                name: "Marlene La Rose Forde",
+                role: (
+                  <>
+                    Attorney, Mortgage Broker,<br className="hidden sm:inline" /> Real Estate Broker
+                  </>
+                ),
+                image: "/marlene-forde.jpg",
+              },
+              {
+                name: "Michelle Toppin",
+                role: (
+                  <>
+                    Attorney – Real Estate –<br className="hidden sm:inline" /> Immigration – all practice areas
+                  </>
+                ),
+                image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80",
+              }
             ].map((member, index) => (
               <Card key={index} className="group w-72 md:w-80 hover:shadow-xl transition-all duration-300 overflow-hidden">
                 <div className="relative overflow-hidden">

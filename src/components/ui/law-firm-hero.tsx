@@ -39,10 +39,17 @@ export function LawFirmHeroSection() {
                     <div className="h-[80rem] absolute left-0 top-0 w-56 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%] hidden lg:block" />
                     <div className="h-[80rem] -translate-y-[350px] absolute left-0 top-0 w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] hidden lg:block" />
                 </div>
-                <section className="relative h-screen flex items-center justify-center bg-[url('/hero-image.png')] bg-cover bg-center bg-no-repeat overflow-x-hidden">
+                <section className="relative h-screen flex items-center justify-center overflow-x-hidden">
+                    {/* Hero background image with high priority */}
+                    <img 
+                        src="/hero-image.png" 
+                        alt="Hero background" 
+                        className="absolute inset-0 w-full h-full object-cover object-center z-0"
+                        fetchPriority="high"
+                    />
                     
                     {/* Dark overlay to enhance image contrast */}
-                    <div className="absolute inset-0 -z-10 bg-black/20"></div>
+                    <div className="absolute inset-0 z-10 bg-black/20"></div>
                     
                     {/* Hero Content - ALL BLACK TEXT */}
                     <div className="relative z-20 text-center max-w-6xl mx-auto px-4">

@@ -27,14 +27,17 @@ import {
   Instagram
 } from "lucide-react"
 import { useState } from "react"
-import { TestimonialsColumn } from "@/components/ui/testimonials-columns"
-import { Gallery4 } from "@/components/ui/gallery4"
 import { animate } from "framer-motion"
 import { TextGradientScroll } from "@/components/ui/text-gradient-scroll"
 import { LogoCarousel } from "@/components/ui/logo-carousel"
-import { FaqSectionWithCategories } from "@/components/ui/faq-with-categories"
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid"
 import { motion } from "framer-motion"
+import { lazy, Suspense } from "react"
+
+// Lazy load heavy below-the-fold components
+const TestimonialsColumn = lazy(() => import("@/components/ui/testimonials-columns").then(module => ({ default: module.TestimonialsColumn })))
+const Gallery4 = lazy(() => import("@/components/ui/gallery4").then(module => ({ default: module.Gallery4 })))
+const FaqSectionWithCategories = lazy(() => import("@/components/ui/faq-with-categories").then(module => ({ default: module.FaqSectionWithCategories })))
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -140,9 +143,10 @@ export default function HomePage() {
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"
                   alt="Trust & Will"
                   className="w-full h-48 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
               </div>
@@ -170,9 +174,10 @@ export default function HomePage() {
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                  src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80"
                   alt="Estate Planning"
                   className="w-full h-48 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
               </div>
@@ -200,9 +205,10 @@ export default function HomePage() {
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1184&q=80"
+                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
                   alt="Immigration"
                   className="w-full h-48 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
               </div>
@@ -234,6 +240,7 @@ export default function HomePage() {
                   src="/credit-report.jpg"
                   alt="Credit Repair"
                   className="w-full h-48 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
               </div>
@@ -262,9 +269,10 @@ export default function HomePage() {
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
                   alt="Mortgage"
                   className="w-full h-48 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
               </div>
@@ -293,9 +301,10 @@ export default function HomePage() {
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                  src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
                   alt="Real Estate"
                   className="w-full h-48 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
               </div>
@@ -324,9 +333,10 @@ export default function HomePage() {
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1489171078254-c3365d6e359f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                  src="https://images.unsplash.com/photo-1489171078254-c3365d6e359f?auto=format&fit=crop&w=800&q=80"
                   alt="Personal Injury"
                   className="w-full h-48 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
               </div>
@@ -355,9 +365,10 @@ export default function HomePage() {
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                  src="https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?auto=format&fit=crop&w=800&q=80"
                   alt="Other"
                   className="w-full h-48 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-lawfirm-primary/50 group-hover:bg-lawfirm-primary/70 transition-all duration-300"></div>
               </div>
@@ -394,7 +405,7 @@ export default function HomePage() {
               Icon={Award}
               name="Proven Track Record"
               description="Thousands of successful cases and satisfied clients"
-              imgSrc="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+              imgSrc="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80"
               className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2"
             />
             <BentoCard
@@ -402,7 +413,7 @@ export default function HomePage() {
               name="Expert Legal Advice"
               description="Decades of combined legal experience"
               className="col-span-1 md:col-span-1"
-              imgSrc="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+              imgSrc="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80"
               verticalFade
             />
             <BentoCard
@@ -410,7 +421,7 @@ export default function HomePage() {
               name="Confidential Service"
               description="Your privacy and confidentiality are our top priorities"
               className="col-span-1"
-              imgSrc="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+              imgSrc="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
               verticalFade
             />
             <BentoCard
@@ -418,7 +429,7 @@ export default function HomePage() {
               name="Compassionate Care"
               description="We treat every client like family"
               className="col-span-1"
-              imgSrc="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+              imgSrc="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
               verticalFade
             />
             <BentoCard
@@ -426,14 +437,14 @@ export default function HomePage() {
               name="Results-Driven"
               description="Focused on achieving the best possible outcomes"
               className="col-span-1"
-              imgSrc="https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+              imgSrc="https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?auto=format&fit=crop&w=800&q=80"
               verticalFade
             />
             <BentoCard
               Icon={Clock}
               name="24/7 Support"
               description="We're here when you need us most"
-              imgSrc="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+              imgSrc="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80"
               className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2"
             />
           </BentoGrid>
@@ -477,6 +488,7 @@ export default function HomePage() {
                     src={member.image}
                     alt={member.name}
                     className="w-full h-80 object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-lawfirm-primary/0 group-hover:bg-lawfirm-primary/20 transition-all duration-300"></div>
                 </div>
@@ -501,91 +513,101 @@ export default function HomePage() {
 
           {/* Columns */}
           <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
-            <TestimonialsColumn testimonials={[
-              { text: 'Immigrants R Us guided me flawlessly through my visa process.', image: 'https://randomuser.me/api/portraits/women/65.jpg', name: 'Sarah Johnson', role: 'Entrepreneur' },
-              { text: 'Professional and compassionate – highly recommend.', image: 'https://randomuser.me/api/portraits/men/32.jpg', name: 'Carlos Medina', role: 'Software Engineer' },
-              { text: 'Their expertise made my green-card application stress-free.', image: 'https://randomuser.me/api/portraits/women/45.jpg', name: 'Emily Chen', role: 'Designer' }
-            ]} duration={15} />
-            <TestimonialsColumn
-              testimonials={[
-                { text: 'Clear communication and outstanding results.', image: 'https://randomuser.me/api/portraits/men/27.jpg', name: 'David Brown', role: 'Photographer' },
-                { text: 'They treated my family with respect and care.', image: 'https://randomuser.me/api/portraits/women/12.jpg', name: 'Aisha Khan', role: 'Teacher' },
-                { text: 'A trustworthy partner for all immigration needs.', image: 'https://randomuser.me/api/portraits/men/41.jpg', name: 'Liam O’Connor', role: 'Consultant' }
-              ]}
-              duration={19}
-              className="hidden md:block"
-            />
-            <TestimonialsColumn
-              testimonials={[
-                { text: 'Their legal team secured my citizenship quickly.', image: 'https://randomuser.me/api/portraits/women/22.jpg', name: 'Maria Garcia', role: 'Chef' },
-                { text: 'Efficient, knowledgeable, and supportive.', image: 'https://randomuser.me/api/portraits/men/13.jpg', name: 'Ivan Petrov', role: 'Student' },
-                { text: 'The best law firm I have worked with.', image: 'https://randomuser.me/api/portraits/women/33.jpg', name: 'Olivia Smith', role: 'Marketing Manager' }
-              ]}
-              duration={17}
-              className="hidden lg:block"
-            />
+            <Suspense fallback={<div className="w-80 h-96 bg-gray-200 animate-pulse rounded-lg"></div>}>
+              <TestimonialsColumn testimonials={[
+                { text: 'Immigrants R Us guided me flawlessly through my visa process.', image: 'https://randomuser.me/api/portraits/women/65.jpg', name: 'Sarah Johnson', role: 'Entrepreneur' },
+                { text: 'Professional and compassionate – highly recommend.', image: 'https://randomuser.me/api/portraits/men/32.jpg', name: 'Carlos Medina', role: 'Software Engineer' },
+                { text: 'Their expertise made my green-card application stress-free.', image: 'https://randomuser.me/api/portraits/women/45.jpg', name: 'Emily Chen', role: 'Designer' }
+              ]} duration={15} />
+            </Suspense>
+            <Suspense fallback={<div className="w-80 h-96 bg-gray-200 animate-pulse rounded-lg hidden md:block"></div>}>
+              <TestimonialsColumn
+                testimonials={[
+                  { text: 'Clear communication and outstanding results.', image: 'https://randomuser.me/api/portraits/men/27.jpg', name: 'David Brown', role: 'Photographer' },
+                  { text: 'They treated my family with respect and care.', image: 'https://randomuser.me/api/portraits/women/12.jpg', name: 'Aisha Khan', role: 'Teacher' },
+                  { text: 'A trustworthy partner for all immigration needs.', image: 'https://randomuser.me/api/portraits/men/41.jpg', name: 'Liam O\'Connor', role: 'Consultant' }
+                ]}
+                duration={19}
+                className="hidden md:block"
+              />
+            </Suspense>
+            <Suspense fallback={<div className="w-80 h-96 bg-gray-200 animate-pulse rounded-lg hidden lg:block"></div>}>
+              <TestimonialsColumn
+                testimonials={[
+                  { text: 'Their legal team secured my citizenship quickly.', image: 'https://randomuser.me/api/portraits/women/22.jpg', name: 'Maria Garcia', role: 'Chef' },
+                  { text: 'Efficient, knowledgeable, and supportive.', image: 'https://randomuser.me/api/portraits/men/13.jpg', name: 'Ivan Petrov', role: 'Student' },
+                  { text: 'The best law firm I have worked with.', image: 'https://randomuser.me/api/portraits/women/33.jpg', name: 'Olivia Smith', role: 'Marketing Manager' }
+                ]}
+                duration={17}
+                className="hidden lg:block"
+              />
+            </Suspense>
           </div>
         </div>
       </section>
 
       {/* Legal Insights Section (carousel) */}
-      <Gallery4
-        items={[
-          {
-            id: "immigration",
-            title: "Understanding Immigration Law Changes",
-            description: "Key updates every immigrant should know in 2025.",
-            href: "#",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1170&q=80",
-          },
-          {
-            id: "estate",
-            title: "Estate Planning Best Practices",
-            description: "Protect your legacy with these essential tips.",
-            href: "#",
-            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1170&q=80",
-          },
-          {
-            id: "trust",
-            title: "Trust & Will Planning Updates",
-            description: "Recent legal changes that may affect your family.",
-            href: "#",
-            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1170&q=80",
-          },
-        ]}
-      />
+      <Suspense fallback={<div className="py-24 bg-gray-100"><div className="max-w-6xl mx-auto px-4 h-96 bg-gray-200 animate-pulse rounded-lg"></div></div>}>
+        <Gallery4
+          items={[
+            {
+              id: "immigration",
+              title: "Understanding Immigration Law Changes",
+              description: "Key updates every immigrant should know in 2025.",
+              href: "#",
+              image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1170&q=80",
+            },
+            {
+              id: "estate",
+              title: "Estate Planning Best Practices",
+              description: "Protect your legacy with these essential tips.",
+              href: "#",
+              image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1170&q=80",
+            },
+            {
+              id: "trust",
+              title: "Trust & Will Planning Updates",
+              description: "Recent legal changes that may affect your family.",
+              href: "#",
+              image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1170&q=80",
+            },
+          ]}
+        />
+      </Suspense>
 
-      <FaqSectionWithCategories
-        title="Frequently Asked Questions"
-        description="Find answers to common questions about our legal services"
-        items={[
-          {
-            question: "How do I know if I need a lawyer?",
-            answer: "If you're facing legal issues, have questions about your rights, or need help with legal documents, it's wise to consult with an attorney.",
-            category: "General",
-          },
-          {
-            question: "What should I bring to my consultation?",
-            answer: "Bring any relevant documents, a list of questions, and be prepared to discuss your situation openly and honestly.",
-            category: "Consultation",
-          },
-          {
-            question: "How much do legal services cost?",
-            answer: "Legal fees vary depending on the complexity of your case. We offer transparent pricing and will discuss all costs upfront.",
-            category: "Pricing",
-          },
-          {
-            question: "How long does a typical case take?",
-            answer: "Timeline varies by case type and complexity. We'll provide realistic expectations and keep you updated throughout the process.",
-            category: "Process",
-          },
-        ]}
-        contactInfo={{
-          title: "Still have questions?",
-          buttonText: "Contact Support",
-          onContact: () => window.location.href = '#contact',
-        }}
-      />
+      <Suspense fallback={<div className="py-24 bg-white"><div className="max-w-6xl mx-auto px-4 h-96 bg-gray-200 animate-pulse rounded-lg"></div></div>}>
+        <FaqSectionWithCategories
+          title="Frequently Asked Questions"
+          description="Find answers to common questions about our legal services"
+          items={[
+            {
+              question: "How do I know if I need a lawyer?",
+              answer: "If you're facing legal issues, have questions about your rights, or need help with legal documents, it's wise to consult with an attorney.",
+              category: "General",
+            },
+            {
+              question: "What should I bring to my consultation?",
+              answer: "Bring any relevant documents, a list of questions, and be prepared to discuss your situation openly and honestly.",
+              category: "Consultation",
+            },
+            {
+              question: "How much do legal services cost?",
+              answer: "Legal fees vary depending on the complexity of your case. We offer transparent pricing and will discuss all costs upfront.",
+              category: "Pricing",
+            },
+            {
+              question: "How long does a typical case take?",
+              answer: "Timeline varies by case type and complexity. We'll provide realistic expectations and keep you updated throughout the process.",
+              category: "Process",
+            },
+          ]}
+          contactInfo={{
+            title: "Still have questions?",
+            buttonText: "Contact Support",
+            onContact: () => window.location.href = '#contact',
+          }}
+        />
+      </Suspense>
 
       {/* Contact CTA Section */}
       <section id="contact" className="py-24 bg-white">

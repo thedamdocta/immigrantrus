@@ -12,5 +12,30 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Separate vendor libraries
+          'react-vendor': ['react', 'react-dom'],
+          'framer-motion': ['framer-motion'],
+          'lucide-icons': ['lucide-react'],
+          // Split UI components that might be large
+          'ui-components': [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-select',
+            '@radix-ui/react-toast'
+          ]
+        }
+      }
+    },
+    // Enable CSS code splitting
+    cssCodeSplit: true,
+    // Generate sourcemaps for production debugging
+    sourcemap: false,
+    // Set chunk size warnings
+    chunkSizeWarningLimit: 1000
   }
 })

@@ -379,7 +379,7 @@ export default function HomePage() {
               name="Proven Track Record"
               description="Thousands of successful cases and satisfied clients"
               imgSrc="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-              className="col-span-3 lg:col-span-2"
+              className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-2"
             />
             <BentoCard
               Icon={Scale}
@@ -418,7 +418,7 @@ export default function HomePage() {
               name="24/7 Support"
               description="We're here when you need us most"
               imgSrc="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-              className="col-span-3 lg:col-span-2"
+              className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-2"
             />
           </BentoGrid>
         </div>

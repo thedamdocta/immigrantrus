@@ -33,6 +33,7 @@ import { LogoCarousel } from "@/components/ui/logo-carousel"
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid"
 import { motion } from "framer-motion"
 import { lazy, Suspense } from "react"
+import { CountUp } from "@/components/ui/count-up"
 
 // Lazy load heavy below-the-fold components
 const TestimonialsColumn = lazy(() => import("@/components/ui/testimonials-columns").then(module => ({ default: module.TestimonialsColumn })))
@@ -59,28 +60,56 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-lawfirm-accent rounded-full flex items-center justify-center mx-auto mb-4">
                 <UserCheck className="h-8 w-8 text-white" />
               </div>
-              <div className="text-3xl font-serif font-semibold text-lawfirm-text mb-2">98%</div>
+              <div className="text-3xl font-serif font-semibold text-lawfirm-text mb-2">
+                <CountUp
+                  to={98}
+                  duration={2.5}
+                  format={(v) => `${v}%`}
+                  className="text-3xl font-serif font-semibold text-lawfirm-text"
+                />
+              </div>
               <div className="text-lawfirm-subtext font-sans">Client Satisfaction</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-lawfirm-accent rounded-full flex items-center justify-center mx-auto mb-4">
                 <Briefcase className="h-8 w-8 text-white" />
               </div>
-              <div className="text-3xl font-serif font-semibold text-lawfirm-text mb-2">5,000+</div>
+              <div className="text-3xl font-serif font-semibold text-lawfirm-text mb-2">
+                <CountUp
+                  to={5000}
+                  duration={3}
+                  format={(v) => `${v.toLocaleString()}+`}
+                  className="text-3xl font-serif font-semibold text-lawfirm-text"
+                />
+              </div>
               <div className="text-lawfirm-subtext font-sans">Cases Handled</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-lawfirm-accent rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="h-8 w-8 text-white" />
               </div>
-              <div className="text-3xl font-serif font-semibold text-lawfirm-text mb-2">20+</div>
+              <div className="text-3xl font-serif font-semibold text-lawfirm-text mb-2">
+                <CountUp
+                  to={20}
+                  duration={4}
+                  format={(v) => `${v}+`}
+                  className="text-3xl font-serif font-semibold text-lawfirm-text"
+                />
+              </div>
               <div className="text-lawfirm-subtext font-sans">Years Experience</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-lawfirm-accent rounded-full flex items-center justify-center mx-auto mb-4">
                 <Star className="h-8 w-8 text-white" />
               </div>
-              <div className="text-3xl font-serif font-semibold text-lawfirm-text mb-2">100+</div>
+              <div className="text-3xl font-serif font-semibold text-lawfirm-text mb-2">
+                <CountUp
+                  to={100}
+                  duration={2.8}
+                  format={(v) => `${v}+`}
+                  className="text-3xl font-serif font-semibold text-lawfirm-text"
+                />
+              </div>
               <div className="text-lawfirm-subtext font-sans">Testimonials</div>
             </div>
           </div>

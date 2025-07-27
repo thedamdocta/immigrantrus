@@ -133,7 +133,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ amount: 0.2 }}
               transition={{ delay: 0, type: 'spring', stiffness: 120 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
@@ -162,7 +162,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ amount: 0.2 }}
               transition={{ delay: 0.05, type: 'spring', stiffness: 120 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
@@ -191,7 +191,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ amount: 0.2 }}
               transition={{ delay: 0.1, type: 'spring', stiffness: 120 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
@@ -221,7 +221,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ amount: 0.2 }}
               transition={{ delay: 0.15, type: 'spring', stiffness: 120 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
@@ -251,7 +251,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ amount: 0.2 }}
               transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
@@ -281,7 +281,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ amount: 0.2 }}
               transition={{ delay: 0.25, type: 'spring', stiffness: 120 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
@@ -311,7 +311,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ amount: 0.2 }}
               transition={{ delay: 0.3, type: 'spring', stiffness: 120 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
@@ -341,7 +341,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ amount: 0.2 }}
               transition={{ delay: 0.35, type: 'spring', stiffness: 120 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">

@@ -385,22 +385,40 @@ export default function HomePage() {
               Icon={Scale}
               name="Expert Legal Advice"
               description="Decades of combined legal experience"
-              className="col-span-1 lg:row-span-2"
+              className="col-span-1"
               imgSrc="https://images.unsplash.com/photo-1531891437562-5a3087f1dd17?auto=format&fit=crop&w=800&q=80"
+              verticalFade
+            />
+            <BentoCard
+              Icon={Shield}
+              name="Confidential Service"
+              description="Your privacy and confidentiality are our top priorities"
+              className="col-span-1"
+              imgSrc="https://images.unsplash.com/photo-1487528278747-ba99ed528ebc?auto=format&fit=crop&w=800&q=80"
               verticalFade
             />
             <BentoCard
               Icon={Heart}
               name="Compassionate Care"
               description="We treat every client like family"
-              className="col-span-2"
-              imgSrc="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80"
+              className="col-span-1"
+              imgSrc="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
+              verticalFade
+            />
+            <BentoCard
+              Icon={CheckCircle}
+              name="Results-Driven"
+              description="Focused on achieving the best possible outcomes"
+              className="col-span-1"
+              imgSrc="https://images.unsplash.com/photo-1516542076529-1ea3854896e3?auto=format&fit=crop&w=800&q=80"
+              verticalFade
             />
             <BentoCard
               Icon={Clock}
               name="24/7 Support"
               description="We're here when you need us most"
-              className="col-span-1"
+              imgSrc="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80"
+              className="col-span-3 lg:col-span-2"
             />
           </BentoGrid>
         </div>

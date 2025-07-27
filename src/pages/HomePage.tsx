@@ -134,7 +134,7 @@ export default function HomePage() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.2 }}
-              transition={{ delay: 0, type: 'spring', stiffness: 100, damping: 10, bounce: 0.4 }}
+              transition={{ delay: 0, type: 'spring', stiffness: 60, damping: 6, bounce: 0.8, mass: 0.8 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
@@ -163,7 +163,7 @@ export default function HomePage() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.2 }}
-              transition={{ delay: 0.05, type: 'spring', stiffness: 100, damping: 10, bounce: 0.4 }}
+              transition={{ delay: 0.05, type: 'spring', stiffness: 60, damping: 6, bounce: 0.8, mass: 0.8 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
@@ -192,7 +192,7 @@ export default function HomePage() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.2 }}
-              transition={{ delay: 0.1, type: 'spring', stiffness: 100, damping: 10, bounce: 0.4 }}
+              transition={{ delay: 0.1, type: 'spring', stiffness: 60, damping: 6, bounce: 0.8, mass: 0.8 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
@@ -222,7 +222,7 @@ export default function HomePage() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.2 }}
-              transition={{ delay: 0.15, type: 'spring', stiffness: 100, damping: 10, bounce: 0.4 }}
+              transition={{ delay: 0.15, type: 'spring', stiffness: 60, damping: 6, bounce: 0.8, mass: 0.8 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
@@ -252,7 +252,7 @@ export default function HomePage() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.2 }}
-              transition={{ delay: 0.2, type: 'spring', stiffness: 100, damping: 10, bounce: 0.4 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 60, damping: 6, bounce: 0.8, mass: 0.8 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
@@ -282,7 +282,7 @@ export default function HomePage() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.2 }}
-              transition={{ delay: 0.25, type: 'spring', stiffness: 100, damping: 10, bounce: 0.4 }}
+              transition={{ delay: 0.25, type: 'spring', stiffness: 60, damping: 6, bounce: 0.8, mass: 0.8 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
@@ -312,7 +312,7 @@ export default function HomePage() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.2 }}
-              transition={{ delay: 0.3, type: 'spring', stiffness: 100, damping: 10, bounce: 0.4 }}
+              transition={{ delay: 0.3, type: 'spring', stiffness: 60, damping: 6, bounce: 0.8, mass: 0.8 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
@@ -342,7 +342,7 @@ export default function HomePage() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.2 }}
-              transition={{ delay: 0.35, type: 'spring', stiffness: 100, damping: 10, bounce: 0.4 }}
+              transition={{ delay: 0.35, type: 'spring', stiffness: 60, damping: 6, bounce: 0.8, mass: 0.8 }}
             >
               <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">

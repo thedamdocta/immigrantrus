@@ -139,8 +139,8 @@ const LawFirmHeroHeader = () => {
             <nav className="fixed z-50 w-full">
                 <div className={cn('mt-2 transition-all duration-300', 
                     isScrolled 
-                        ? 'bg-white/90 backdrop-blur-lg border border-gray-200 rounded-2xl max-w-[95%] mx-auto' 
-                        : 'max-w-[95%] mx-auto'
+                        ? 'bg-white/90 backdrop-blur-lg border border-gray-200 rounded-2xl max-w-[95%] sm:max-w-6xl mx-auto' 
+                        : 'max-w-[95%] sm:max-w-6xl mx-auto'
                 )}>
                     {/* Mobile Layout - Evenly spaced */}
                     <div className="flex items-center justify-evenly py-3 px-2 sm:hidden">
@@ -178,7 +178,7 @@ const LawFirmHeroHeader = () => {
                     </div>
 
                     {/* Desktop Layout - Centered for larger screens */}
-                    <div className={cn('hidden sm:flex items-center justify-between py-2 px-4 lg:px-5 transition-all duration-300', 
+                    <div className={cn('hidden sm:flex items-center justify-between py-3 px-4 lg:px-6 transition-all duration-300', 
                         isScrolled 
                             ? 'max-w-5xl mx-auto' 
                             : 'max-w-6xl mx-auto'

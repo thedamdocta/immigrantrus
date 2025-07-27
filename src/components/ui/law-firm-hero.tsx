@@ -40,16 +40,13 @@ export function LawFirmHeroSection() {
                     <div className="h-[80rem] -translate-y-[350px] absolute left-0 top-0 w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] hidden lg:block" />
                 </div>
                 <section className="relative h-screen flex items-center justify-center overflow-x-hidden">
-                    {/* Hero background image with WebP optimization */}
-                    <picture className="absolute inset-0 z-0">
-                        <source srcSet="/hero-image.webp" type="image/webp" />
-                        <img 
-                            src="/hero-image.png" 
-                            alt="Hero background" 
-                            className="w-full h-full object-cover object-center"
-                            fetchPriority="high"
-                        />
-                    </picture>
+                    {/* Hero background image with high priority */}
+                    <img 
+                        src="/hero-image.png" 
+                        alt="Hero background" 
+                        className="absolute inset-0 w-full h-full object-cover object-center z-0"
+                        fetchPriority="high"
+                    />
                     
                     {/* Dark overlay to enhance image contrast */}
                     <div className="absolute inset-0 z-10 bg-black/20"></div>

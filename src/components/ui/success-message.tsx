@@ -111,11 +111,6 @@ export default function SuccessMessage({
             </p>
             <div className="pt-4 border-t">
               <p className="text-sm font-medium text-foreground">Forde & Associates Law Firm</p>
-              <p className="text-sm text-muted-foreground">
-                Contact: <a href="mailto:marlene@fordelaw.org" className="text-primary hover:underline">
-                  marlene@fordelaw.org
-                </a>
-              </p>
             </div>
             
             {/* Link back to main site */}

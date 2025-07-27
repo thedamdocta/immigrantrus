@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { cn } from '@/lib/utils'
 import { animate } from 'framer-motion'
+import { Modal } from "@/components/ui/modal"
+import SignupForm from "@/components/ui/registration"
 
 const transitionVariants = {
     item: {
@@ -162,11 +164,17 @@ const LawFirmHeroHeader = () => {
                         ))}
                         
                         {/* Get Started Button */}
-                        <Button
-                            size="sm"
-                            className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-md px-3 py-1 text-xs whitespace-nowrap">
-                            Get Started
-                        </Button>
+                        <Modal
+                            trigger={
+                                <Button
+                                    size="sm"
+                                    className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-md px-3 py-1 text-xs whitespace-nowrap">
+                                    Get Started
+                                </Button>
+                            }
+                        >
+                            <SignupForm />
+                        </Modal>
                     </div>
 
                     {/* Desktop Layout - Centered for larger screens */}
@@ -203,11 +211,17 @@ const LawFirmHeroHeader = () => {
                         </ul>
 
                         {/* Get Started Button */}
-                        <Button
-                            size="sm"
-                            className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-md px-6 text-sm">
-                            Get Started
-                        </Button>
+                        <Modal
+                            trigger={
+                                <Button
+                                    size="sm"
+                                    className="bg-lawfirm-accent hover:bg-lawfirm-accent/90 text-white rounded-md px-6 text-sm">
+                                    Get Started
+                                </Button>
+                            }
+                        >
+                            <SignupForm />
+                        </Modal>
                     </div>
                 </div>
             </nav>

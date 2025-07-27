@@ -363,7 +363,7 @@ export default function HomePage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-24 bg-lawfirm-secondaryBackground">
+      <section className="py-24 bg-lawfirm-secondaryBackground" id="benefits">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-serif font-semibold text-lawfirm-text mb-6">Why Choose Us</h2>
@@ -371,29 +371,38 @@ export default function HomePage() {
               We're committed to providing exceptional<br className="hidden md:block" /> legal services with personalized attention
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { icon: Scale, title: "Expert Legal Advice", desc: "Our attorneys bring decades of experience to every case" },
-              { icon: Clock, title: "24/7 Support", desc: "We're available when you need us most" },
-              { icon: Shield, title: "Confidential Service", desc: "Your privacy and confidentiality are our top priorities" },
-              { icon: Award, title: "Proven Track Record", desc: "Thousands of successful cases and satisfied clients" },
-              { icon: Heart, title: "Compassionate Care", desc: "We understand the personal nature of legal matters" },
-              { icon: CheckCircle, title: "Results-Driven", desc: "Focused on achieving the best possible outcomes" }
-            ].map((benefit, index) => (
-              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-lawfirm-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <benefit.icon className="h-8 w-8 text-lawfirm-accent" />
-                  </div>
-                  <CardTitle className="text-xl font-serif text-lawfirm-text">{benefit.title}</CardTitle>
-                  <CardDescription className="text-lawfirm-subtext">
-                    {benefit.desc}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
+
+          {/* Bento Grid of key differentiators */}
+          <BentoGrid>
+            <BentoCard
+              Icon={Award}
+              name="Proven Track Record"
+              description="Thousands of successful cases and satisfied clients"
+              imgSrc="https://images.unsplash.com/photo-1520975914577-46abe5e9ad35?auto=format&fit=crop&w=1200&q=80"
+              className="col-span-3 lg:col-span-2"
+            />
+            <BentoCard
+              Icon={Scale}
+              name="Expert Legal Advice"
+              description="Decades of combined legal experience"
+              className="col-span-1 lg:row-span-2"
+              imgSrc="https://images.unsplash.com/photo-1531891437562-5a3087f1dd17?auto=format&fit=crop&w=800&q=80"
+              verticalFade
+            />
+            <BentoCard
+              Icon={Heart}
+              name="Compassionate Care"
+              description="We treat every client like family"
+              className="col-span-2"
+              imgSrc="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80"
+            />
+            <BentoCard
+              Icon={Clock}
+              name="24/7 Support"
+              description="We're here when you need us most"
+              className="col-span-1"
+            />
+          </BentoGrid>
         </div>
       </section>
 
@@ -591,42 +600,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Key Features Grid (new Bento grid) */}
-      <section className="py-24 bg-lawfirm-secondaryBackground/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <BentoGrid>
-            <BentoCard
-              Icon={Award}
-              name="Proven Track Record"
-              description="Thousands of successful cases and satisfied clients"
-              imgSrc="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1200&q=80"
-              className="col-span-3 lg:col-span-2"
-            />
-            <BentoCard
-              Icon={Scale}
-              name="Expert Legal Advice"
-              description="Decades of combined legal experience"
-              className="col-span-1 lg:row-span-2"
-              imgSrc="https://images.unsplash.com/photo-1555374018-13a8994ab246?auto=format&fit=crop&w=800&q=80"
-              verticalFade
-            />
-            <BentoCard
-              Icon={Heart}
-              name="Compassionate Care"
-              description="We treat every client like family"
-              className="col-span-2"
-              imgSrc="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80"
-            />
-            <BentoCard
-              Icon={Clock}
-              name="24/7 Support"
-              description="We're here when you need us most"
-              className="col-span-1"
-            />
-          </BentoGrid>
         </div>
       </section>
 

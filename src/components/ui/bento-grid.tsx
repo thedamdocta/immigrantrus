@@ -9,7 +9,7 @@ export const BentoGrid: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 }) => (
   <div
     className={cn(
-      "grid auto-rows-[180px] grid-cols-3 gap-4 lg:auto-rows-[220px] lg:grid-cols-4",
+      "grid auto-rows-[180px] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:auto-rows-[220px]",  // responsive cols
       className,
     )}
     {...rest}

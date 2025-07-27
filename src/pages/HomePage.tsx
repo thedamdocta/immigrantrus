@@ -378,15 +378,15 @@ export default function HomePage() {
               Icon={Award}
               name="Proven Track Record"
               description="Thousands of successful cases and satisfied clients"
-              imgSrc="https://images.unsplash.com/photo-1520975914577-46abe5e9ad35?auto=format&fit=crop&w=1200&q=80"
+              imgSrc="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
               className="col-span-3 lg:col-span-2"
             />
             <BentoCard
               Icon={Scale}
               name="Expert Legal Advice"
               description="Decades of combined legal experience"
-              className="col-span-1"
-              imgSrc="https://images.unsplash.com/photo-1531891437562-5a3087f1dd17?auto=format&fit=crop&w=800&q=80"
+              className="col-span-1 md:row-span-2"
+              imgSrc="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               verticalFade
             />
             <BentoCard
@@ -394,7 +394,7 @@ export default function HomePage() {
               name="Confidential Service"
               description="Your privacy and confidentiality are our top priorities"
               className="col-span-1"
-              imgSrc="https://images.unsplash.com/photo-1487528278747-ba99ed528ebc?auto=format&fit=crop&w=800&q=80"
+              imgSrc="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               verticalFade
             />
             <BentoCard
@@ -402,7 +402,7 @@ export default function HomePage() {
               name="Compassionate Care"
               description="We treat every client like family"
               className="col-span-1"
-              imgSrc="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
+              imgSrc="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               verticalFade
             />
             <BentoCard
@@ -410,14 +410,14 @@ export default function HomePage() {
               name="Results-Driven"
               description="Focused on achieving the best possible outcomes"
               className="col-span-1"
-              imgSrc="https://images.unsplash.com/photo-1516542076529-1ea3854896e3?auto=format&fit=crop&w=800&q=80"
+              imgSrc="https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               verticalFade
             />
             <BentoCard
               Icon={Clock}
               name="24/7 Support"
               description="We're here when you need us most"
-              imgSrc="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80"
+              imgSrc="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
               className="col-span-3 lg:col-span-2"
             />
           </BentoGrid>

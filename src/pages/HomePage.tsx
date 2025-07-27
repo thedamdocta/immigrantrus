@@ -131,6 +131,7 @@ export default function HomePage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <motion.div
+              className="mb-8 md:mb-0"
               initial={{ y: 60 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.4 }}
@@ -160,6 +161,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div
+              className="mb-8 md:mb-0"
               initial={{ y: 60 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.4 }}
@@ -189,6 +191,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div
+              className="mb-8 md:mb-0"
               initial={{ y: 60 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.4 }}
@@ -219,6 +222,7 @@ export default function HomePage() {
 
             {/* Credit Repair */}
             <motion.div
+              className="mb-8 md:mb-0"
               initial={{ y: 60 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.4 }}
@@ -249,6 +253,7 @@ export default function HomePage() {
 
             {/* Mortgage */}
             <motion.div
+              className="mb-8 md:mb-0"
               initial={{ y: 60 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.4 }}
@@ -279,6 +284,7 @@ export default function HomePage() {
 
             {/* Real Estate */}
             <motion.div
+              className="mb-8 md:mb-0"
               initial={{ y: 60 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.4 }}
@@ -309,6 +315,7 @@ export default function HomePage() {
 
             {/* Personal Injury */}
             <motion.div
+              className="mb-8 md:mb-0"
               initial={{ y: 60 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.4 }}
@@ -339,6 +346,7 @@ export default function HomePage() {
 
             {/* Other */}
             <motion.div
+              className="mb-8 md:mb-0"
               initial={{ y: 60 }}
               whileInView={{ y: 0 }}
               viewport={{ amount: 0.4 }}

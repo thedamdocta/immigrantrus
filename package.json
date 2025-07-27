@@ -10,24 +10,26 @@
     "lint": "eslint . --ext js,jsx,ts,tsx"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.37.0",
+    "@clerk/clerk-sdk-node": "^4.13.23",
     "@radix-ui/react-accordion": "^1.2.11",
+    "@radix-ui/react-checkbox": "^1.0.6",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
-    "@radix-ui/react-checkbox": "^1.0.6",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "12.23.9",
     "lucide-react": "^0.290.0",
+    "motion-dom": "12.23.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.0",
     "tailwind-merge": "^2.0.0",
-    "tailwindcss-animate": "^1.0.7",
-    "motion-dom": "12.23.9"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

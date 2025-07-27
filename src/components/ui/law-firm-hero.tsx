@@ -178,7 +178,7 @@ const LawFirmHeroHeader = () => {
                     </div>
 
                     {/* Desktop Layout - Centered for larger screens */}
-                    <div className={cn('hidden sm:flex items-center justify-between py-3 px-4 lg:px-6 transition-all duration-300', 
+                    <div className={cn('hidden sm:flex items-center justify-between py-2 px-4 lg:px-5 transition-all duration-300', 
                         isScrolled 
                             ? 'max-w-5xl mx-auto' 
                             : 'max-w-6xl mx-auto'

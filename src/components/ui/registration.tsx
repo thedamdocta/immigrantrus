@@ -67,6 +67,7 @@ export default function SignupForm() {
                 <Label htmlFor="firstName">First name</Label>
                 <Input
                   id="firstName"
+                  placeholder="First name"
                   value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                 />
@@ -76,6 +77,7 @@ export default function SignupForm() {
                 <Label htmlFor="lastName">Last name</Label>
                 <Input
                   id="lastName"
+                  placeholder="Last name"
                   value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                 />
@@ -87,6 +89,7 @@ export default function SignupForm() {
               <Label htmlFor="username">Username</Label>
               <Input
                 id="username"
+                placeholder="Username"
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
               />
@@ -97,6 +100,7 @@ export default function SignupForm() {
               <Label htmlFor="email">Email address</Label>
               <Input
                 id="email"
+                placeholder="Email address"
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -109,6 +113,7 @@ export default function SignupForm() {
               <div className="relative">
                 <Input
                   id="password"
+                  placeholder="Password"
                   type={showPassword ? "text" : "password"}
                   className="pr-10"
                   value={formData.password}
@@ -140,7 +145,7 @@ export default function SignupForm() {
               {errors.terms && <p className="text-sm text-destructive ml-2">{errors.terms}</p>}
             </div>
 
-            <Button type="submit" className="w-full bg-primary text-primary-foreground">Create free account</Button>
+            <Button type="submit" className="w-full bg-primary text-white">Create free account</Button>
           </form>
         </CardContent>
         <CardFooter className="flex justify-center border-t !py-4">

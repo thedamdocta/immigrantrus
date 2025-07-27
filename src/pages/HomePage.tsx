@@ -33,6 +33,8 @@ import { animate } from "framer-motion"
 import { TextGradientScroll } from "@/components/ui/text-gradient-scroll"
 import { LogoCarousel } from "@/components/ui/logo-carousel"
 import { FaqSectionWithCategories } from "@/components/ui/faq-with-categories"
+import { BentoGrid, BentoCard } from "@/components/ui/bento-grid"
+import { motion } from "framer-motion"
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -128,7 +130,12 @@ export default function HomePage() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
@@ -149,8 +156,14 @@ export default function HomePage() {
                 </Button>
               </CardContent>
             </Card>
+            </motion.div>
 
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
@@ -171,8 +184,14 @@ export default function HomePage() {
                 </Button>
               </CardContent>
             </Card>
+            </motion.div>
 
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1184&q=80"
@@ -193,9 +212,15 @@ export default function HomePage() {
                 </Button>
               </CardContent>
             </Card>
+            </motion.div>
 
             {/* Credit Repair */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="/credit-report.jpg"
@@ -216,9 +241,15 @@ export default function HomePage() {
                 </Button>
               </CardContent>
             </Card>
+            </motion.div>
 
             {/* Mortgage */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
@@ -239,9 +270,15 @@ export default function HomePage() {
                 </Button>
               </CardContent>
             </Card>
+            </motion.div>
 
             {/* Real Estate */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
@@ -262,9 +299,15 @@ export default function HomePage() {
                 </Button>
               </CardContent>
             </Card>
+            </motion.div>
 
             {/* Personal Injury */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1489171078254-c3365d6e359f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
@@ -285,9 +328,15 @@ export default function HomePage() {
                 </Button>
               </CardContent>
             </Card>
+            </motion.div>
 
             {/* Other */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Card className="group hover:shadow-xl transition-all duration-300 bg-lawfirm-primary text-white overflow-hidden flex flex-col h-full">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
@@ -308,6 +357,7 @@ export default function HomePage() {
                 </Button>
               </CardContent>
             </Card>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -375,7 +425,7 @@ export default function HomePage() {
                     Attorney – Real Estate –<br className="hidden sm:inline" /> Immigration – all practice areas
                   </>
                 ),
-                image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80",
+                image: "/michelletoppinai.png",
               }
             ].map((member, index) => (
               <Card key={index} className="group w-72 md:w-80 hover:shadow-xl transition-all duration-300 overflow-hidden">
@@ -541,6 +591,42 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Key Features Grid (new Bento grid) */}
+      <section className="py-24 bg-lawfirm-secondaryBackground/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <BentoGrid>
+            <BentoCard
+              Icon={Award}
+              name="Proven Track Record"
+              description="Thousands of successful cases and satisfied clients"
+              imgSrc="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1200&q=80"
+              className="col-span-3 lg:col-span-2"
+            />
+            <BentoCard
+              Icon={Scale}
+              name="Expert Legal Advice"
+              description="Decades of combined legal experience"
+              className="col-span-1 lg:row-span-2"
+              imgSrc="https://images.unsplash.com/photo-1555374018-13a8994ab246?auto=format&fit=crop&w=800&q=80"
+              verticalFade
+            />
+            <BentoCard
+              Icon={Heart}
+              name="Compassionate Care"
+              description="We treat every client like family"
+              className="col-span-2"
+              imgSrc="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80"
+            />
+            <BentoCard
+              Icon={Clock}
+              name="24/7 Support"
+              description="We're here when you need us most"
+              className="col-span-1"
+            />
+          </BentoGrid>
         </div>
       </section>
 

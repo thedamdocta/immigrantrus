@@ -27,7 +27,7 @@ export const Modal: React.FC<ModalProps> = ({ trigger, children, className }) =>
             className
           )}
         >
-          <div className="relative w-full max-w-md rounded-xl bg-background/90 shadow-lg backdrop-blur-xl">
+          <div className="relative w-full max-w-sm sm:max-w-md rounded-xl bg-background/90 shadow-lg backdrop-blur-xl mx-auto">
             <Dialog.Close aria-label="Close" className="absolute right-4 top-4 text-muted-foreground focus:outline-none">
               <X className="h-5 w-5" />
             </Dialog.Close>

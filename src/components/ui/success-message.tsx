@@ -117,6 +117,18 @@ export default function SuccessMessage({
                 </a>
               </p>
             </div>
+            
+            {/* Link back to main site */}
+            <div className="pt-4">
+              <a 
+                href="https://www.immigrantsrus.org/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-md transition-colors duration-200"
+              >
+                Visit Our Main Website
+              </a>
+            </div>
           </div>
         </CardContent>
       </Card>

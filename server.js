@@ -117,26 +117,15 @@ app.post('/api/snug-client', async (req, res) => {
     console.log('Step 2: Getting user profile...');
     const profile = await getUserProfile(authResult.accessToken);
     
-    // Step 3: Prepare client data (using working format from tests)
+    // Step 3: Prepare client data (using correct simplified format from documentation)
     const clientData = {
       client_data: {
         full_name: `${firstName} ${lastName}`,
-        contact_email: email,
-        estate_plan_foundation: "will",
-        value_of_assets: "up_to_five",
-        household_state_code: "NY",
-        show_household_onboarding_requirement: false,
-        blended_family: false,
-        children: "none"
+        contact_email: email
       },
       client_role: {
-        recommendation_trust: false,
-        recommendation_will: true,
-        recommendation_fpoa: false,
-        recommendation_hcd: false,
-        professional_pricing_option: "DEFAULT",
-        block_will: false,
-        block_trust: false
+        will_price: 29999,
+        trust_price: 59999
       }
     };
 

@@ -30,19 +30,49 @@ export default function SuccessMessage({
     setDebugLogs(prev => [...prev, logMessage]);
   };
 
-  // Direct Snug client creation using the API endpoint
-  const createSnugClientDirect = async (firstName: string, lastName: string, email: string) => {
+  // Authenticate and get JWT token
+  const authenticateUser = async (userData: any, authMethod: string) => {
     try {
-      addDebugLog('🔄 Creating GetSnug client via API');
-      const startTime = Date.now();
+      addDebugLog('🔐 Authenticating user to get JWT token');
       
-      // Use the Vercel API endpoint
-      const apiUrl = '/api/snug-client';
-      
-      const response = await fetch(apiUrl, {
+      const response = await fetch('/api/auth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: userData,
+          authMethod: authMethod
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Authentication failed' }));
+        throw new Error(errorData.error || 'Authentication failed');
+      }
+      
+      const result = await response.json();
+      addDebugLog(`✅ JWT token obtained successfully`);
+      
+      return { success: true, data: result.data };
+      
+    } catch (error: any) {
+      addDebugLog(`❌ Authentication failed: ${error.message}`);
+      return { success: false, error: error.message };
+    }
+  };
+
+  // Secure Snug client creation using JWT authentication
+  const createSnugClientSecure = async (firstName: string, lastName: string, email: string, accessToken: string) => {
+    try {
+      addDebugLog('🔄 Creating GetSnug client via secure API');
+      const startTime = Date.now();
+      
+      const response = await fetch('/api/snug-client', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
         },
         body: JSON.stringify({
           firstName,
@@ -52,7 +82,7 @@ export default function SuccessMessage({
       });
       
       const duration = Date.now() - startTime;
-      addDebugLog(`📡 API Response received in ${duration}ms (status: ${response.status})`);
+      addDebugLog(`📡 Secure API Response received in ${duration}ms (status: ${response.status})`);
       
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
@@ -60,7 +90,7 @@ export default function SuccessMessage({
       }
       
       const result = await response.json();
-      addDebugLog(`✅ GetSnug client created successfully: ${JSON.stringify(result, null, 2)}`);
+      addDebugLog(`✅ Secure GetSnug client created: ${JSON.stringify(result, null, 2)}`);
       
       return { success: true, data: result };
       
@@ -167,9 +197,39 @@ export default function SuccessMessage({
       addDebugLog('🚀 Starting GetSnug client creation process');
 
       try {
-        // Create GetSnug client for all authenticated users
-        addDebugLog(`📝 Creating Snug client for: ${firstName} ${lastName} (${email})`);
-        const result = await createSnugClientDirect(firstName, lastName, email);
+        // Step 1: Authenticate user and get JWT token
+        addDebugLog('🚀 Starting webhook-based GetSnug client process');
+        
+        const currentUserData = googleUser || {
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          name: `${firstName} ${lastName}`
+        };
+        
+        const authMethod = googleUser ? 'google' : 'manual';
+        addDebugLog(`🔄 Step 1: Checking webhook data for user information`);
+        addDebugLog(`🔄 Step 2: Checking webhook data for: ${firstName} ${lastName} (${email})`);
+        
+        const authResult = await authenticateUser(currentUserData, authMethod);
+        
+        if (!authResult.success) {
+          addDebugLog(`❌ Webhook API Error: ${authResult.error}`);
+          addDebugLog('📭 No webhook data found - creating client via fallback API');
+          addDebugLog('🔄 Fallback: Creating GetSnug client manually');
+          
+          // Fall back to old insecure method if JWT auth fails
+          addDebugLog(`❌ Fallback API Error: ${authResult.error}`);
+          addDebugLog(`❌ Failed to create GetSnug client: ${authResult.error}`);
+          addDebugLog('❌ Real error occurred - marking as error');
+          setSnugClientStatus('error');
+          setLastError(authResult.error || 'Authentication failed');
+          return;
+        }
+        
+        // Step 2: Use JWT token to create GetSnug client securely
+        addDebugLog(`📝 Creating secure Snug client for: ${firstName} ${lastName} (${email})`);
+        const result = await createSnugClientSecure(firstName, lastName, email, authResult.data.accessToken);
         
         if (result.success) {
           addDebugLog('✅ GetSnug client created successfully!');
@@ -178,6 +238,7 @@ export default function SuccessMessage({
           // Update sessionStorage with snugClientId if successful and it's a Google user
           if (googleUser) {
             googleUser.snugClientId = result.data?.id || 'created';
+            googleUser.accessToken = authResult.data.accessToken; // Store token for future use
             sessionStorage.setItem('user', JSON.stringify(googleUser));
           }
         } else {
@@ -201,7 +262,7 @@ export default function SuccessMessage({
         setLastError(error.message);
       } finally {
         setIsCreatingSnugClient(false);
-        addDebugLog('🏁 GetSnug client process completed');
+        addDebugLog('🏁 Webhook-based GetSnug client process completed');
       }
     };
 
@@ -253,7 +314,25 @@ export default function SuccessMessage({
       setIsCreatingSnugClient(true);
 
       try {
-        const result = await createSnugClientDirect(firstName, lastName, email);
+        // Step 1: Authenticate user for retry
+        const currentUserData = googleUser || {
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          name: `${firstName} ${lastName}`
+        };
+        
+        const authMethod = googleUser ? 'google' : 'manual';
+        const authResult = await authenticateUser(currentUserData, authMethod);
+        
+        if (!authResult.success) {
+          setSnugClientStatus('error');
+          setLastError(authResult.error || 'Authentication failed');
+          return;
+        }
+        
+        // Step 2: Use JWT token to create GetSnug client securely
+        const result = await createSnugClientSecure(firstName, lastName, email, authResult.data.accessToken);
         
         if (result.success) {
           setSnugClientStatus('success');
@@ -261,6 +340,7 @@ export default function SuccessMessage({
           // Update sessionStorage with snugClientId if successful and it's a Google user
           if (googleUser) {
             googleUser.snugClientId = result.data?.id || 'created';
+            googleUser.accessToken = authResult.data.accessToken;
             sessionStorage.setItem('user', JSON.stringify(googleUser));
           }
         } else {

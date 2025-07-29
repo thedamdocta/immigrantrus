@@ -1,10 +1,9 @@
 import * as React from "react";
-import { useEffect, useState, useCallback } from "react";
-import { CheckIcon, Loader2, RefreshCw } from "lucide-react";
-import { useUser } from "@clerk/clerk-react";
+import { useEffect, useState, useRef } from "react";
+import { CheckIcon, Loader2, RefreshCw, AlertCircle } from "lucide-react";
+import { useUser, useAuth } from "@/contexts/AuthContext";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { SnugApiService } from "@/lib/snugApi";
 
 interface SuccessMessageProps {
   title?: string;
@@ -15,132 +14,275 @@ export default function SuccessMessage({
   title = "Welcome! Your account has been created successfully.",
   message = "We'll be in touch soon with next steps."
 }: SuccessMessageProps) {
-  const { user, isLoaded, isSignedIn } = useUser();
+  const { user, isLoaded } = useUser();
+  const { isSignedIn } = useAuth();
   const [isCreatingSnugClient, setIsCreatingSnugClient] = useState(false);
   const [snugClientStatus, setSnugClientStatus] = useState<'pending' | 'success' | 'error' | null>(null);
   const [retryCount, setRetryCount] = useState(0);
   const [lastError, setLastError] = useState<string | null>(null);
+  const [debugLogs, setDebugLogs] = useState<string[]>([]);
+  const processingRef = useRef(false);
 
-  // Enhanced client creation function with retry logic
-  const createSnugClientForUser = useCallback(async (retryAttempt = 0) => {
-    console.log(`🔄 Creating Snug client (attempt ${retryAttempt + 1})...`);
-    
-    if (!isLoaded) {
-      console.log('⏳ Clerk not loaded yet, waiting...');
-      return;
-    }
-    
-    if (!isSignedIn || !user) {
-      console.log('👻 No authenticated user found, skipping Snug client creation');
-      setSnugClientStatus('success');
-      return;
-    }
+  const addDebugLog = (message: string) => {
+    const timestamp = new Date().toLocaleTimeString();
+    const logMessage = `[${timestamp}] ${message}`;
+    console.log(logMessage);
+    setDebugLogs(prev => [...prev, logMessage]);
+  };
 
-    // Extract user information with better error handling
-    const firstName = user.firstName?.trim() || '';
-    const lastName = user.lastName?.trim() || '';
-    const email = user.emailAddresses?.[0]?.emailAddress?.trim() || '';
-
-    console.log('👤 User data extracted:', { 
-      firstName, 
-      lastName, 
-      email, 
-      userCreatedAt: user.createdAt,
-      hasEmailAddresses: user.emailAddresses?.length > 0,
-      emailCount: user.emailAddresses?.length 
-    });
-
-    // Validation with specific error messages
-    if (!firstName || !lastName || !email) {
-      const missingFields = [];
-      if (!firstName) missingFields.push('firstName');
-      if (!lastName) missingFields.push('lastName');
-      if (!email) missingFields.push('email');
-      
-      const errorMsg = `Missing required user data: ${missingFields.join(', ')}`;
-      console.error('❌', errorMsg);
-      setLastError(errorMsg);
-      setSnugClientStatus('error');
-      return;
-    }
-
-    // Check environment variables
-    const snugEmail = import.meta.env.VITE_SNUG_EMAIL;
-    const snugPassword = import.meta.env.VITE_SNUG_PASSWORD;
-    
-    if (!snugEmail || !snugPassword) {
-      const errorMsg = 'Missing VITE_SNUG_EMAIL or VITE_SNUG_PASSWORD environment variables';
-      console.error('❌', errorMsg);
-      setLastError(errorMsg);
-      setSnugClientStatus('error');
-      return;
-    }
-
-    setIsCreatingSnugClient(true);
-    setSnugClientStatus('pending');
-    setLastError(null);
-
+  // Direct Snug client creation using the API endpoint
+  const createSnugClientDirect = async (firstName: string, lastName: string, email: string) => {
     try {
-      const snugService = new SnugApiService();
-      
-      console.log(`🚀 Creating Snug client for: ${firstName} ${lastName} (${email})`);
-      
-      const clientData = SnugApiService.createDefaultClientData(firstName, lastName, email);
-      console.log('📤 Client data:', JSON.stringify(clientData, null, 2));
-      
+      addDebugLog('🔄 Creating GetSnug client via API');
       const startTime = Date.now();
-      const result = await snugService.createClient(clientData);
-      const duration = Date.now() - startTime;
       
-      console.log(`✅ Snug client created successfully in ${duration}ms:`, result);
-      setSnugClientStatus('success');
-      setRetryCount(0);
+      // Use the Vercel API endpoint
+      const apiUrl = '/api/snug-client';
+      
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email
+        })
+      });
+      
+      const duration = Date.now() - startTime;
+      addDebugLog(`📡 API Response received in ${duration}ms (status: ${response.status})`);
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        throw new Error(errorData.error || `HTTP ${response.status}`);
+      }
+      
+      const result = await response.json();
+      addDebugLog(`✅ GetSnug client created successfully: ${JSON.stringify(result, null, 2)}`);
+      
+      return { success: true, data: result };
       
     } catch (error: any) {
-      console.error('❌ Failed to create Snug client:', error);
-      setLastError(error.message);
+      addDebugLog(`❌ Failed to create GetSnug client: ${error.message}`);
       
-      // Check if error is due to client already existing (success case)
-      if (error.message && (
-        error.message.includes('already exists') || 
-        error.message.includes('duplicate') ||
-        error.message.includes('already has this role')
-      )) {
-        console.log('✅ Snug client already exists - treating as success');
-        setSnugClientStatus('success');
-        setLastError(null);
-      } else {
-        // Real error - attempt retry if under limit
-        if (retryAttempt < 2) {
-          console.log(`🔄 Retrying in 2 seconds... (attempt ${retryAttempt + 2})`);
-          setRetryCount(retryAttempt + 1);
-          setTimeout(() => {
-            createSnugClientForUser(retryAttempt + 1);
-          }, 2000);
-        } else {
-          console.log('❌ Max retries exceeded, marking as error');
-          setSnugClientStatus('error');
+      // If it's a network error (fetch failed), just skip it
+      if (error.message === 'Failed to fetch' || error.message.includes('NetworkError')) {
+        addDebugLog('📡 API endpoint not available - this is normal in development');
+        return { success: false, error: 'API not available' };
+      }
+      
+      return { success: false, error: error.message };
+    }
+  };
+
+  // Create Snug client for all users
+  useEffect(() => {
+    const createSnugClientForUser = async () => {
+      // Prevent duplicate processing
+      if (processingRef.current) {
+        console.log('🔒 Processing already in progress, skipping duplicate execution');
+        return;
+      }
+      
+      processingRef.current = true;
+      addDebugLog('🔄 SuccessMessage useEffect triggered');
+      
+      // Check for Google SSO user data in sessionStorage first
+      const sessionUserData = sessionStorage.getItem('user');
+      let googleUser = null;
+      
+      if (sessionUserData) {
+        try {
+          googleUser = JSON.parse(sessionUserData);
+          addDebugLog('🔍 Found Google SSO user data in sessionStorage');
+          addDebugLog(`📊 Google user data: ${JSON.stringify(googleUser, null, 2)}`);
+        } catch (e) {
+          addDebugLog('❌ Failed to parse sessionStorage user data');
         }
       }
-    } finally {
-      setIsCreatingSnugClient(false);
-    }
-  }, [user, isLoaded, isSignedIn]);
+      
+      // Extract user information
+      let firstName: string = '';
+      let lastName: string = '';
+      let email: string = '';
+      let userSource: string = 'unknown';
+      let snugClientId: string | null = null;
+      
+      // Check Google SSO user first
+      if (googleUser && googleUser.authMethod === 'google') {
+        firstName = googleUser.firstName || '';
+        lastName = googleUser.lastName || '';
+        email = googleUser.email || '';
+        snugClientId = googleUser.snugClientId || null;
+        userSource = 'Google SSO';
+        
+        addDebugLog(`👤 Google SSO user data extracted:`);
+        addDebugLog(`   - firstName: "${firstName}"`);
+        addDebugLog(`   - lastName: "${lastName}"`);
+        addDebugLog(`   - email: "${email}"`);
+        addDebugLog(`   - googleId: ${googleUser.googleId}`);
+        addDebugLog(`   - snugClientId: ${snugClientId}`);
+        
+        // If Snug client was already created, we're done
+        if (snugClientId) {
+          addDebugLog('✅ Snug client already created during SSO');
+          setSnugClientStatus('success');
+          return;
+        }
+      } else if (user) {
+        // Fall back to custom auth system
+        firstName = user.firstName || '';
+        lastName = user.lastName || '';
+        email = user.email || '';
+        userSource = 'Custom auth system';
 
-  // Create Snug client for all authenticated users
-  useEffect(() => {
-    // Add a small delay to ensure Clerk is fully loaded after OAuth redirect
-    const timer = setTimeout(() => {
-      createSnugClientForUser();
-    }, 100);
+        addDebugLog(`👤 Custom auth user data extracted:`);
+        addDebugLog(`   - firstName: "${firstName}"`);
+        addDebugLog(`   - lastName: "${lastName}"`);
+        addDebugLog(`   - email: "${email}"`);
+        addDebugLog(`   - userId: ${user.id}`);
+      } else if (!isLoaded) {
+        addDebugLog('⏳ Auth not loaded yet, waiting...');
+        return;
+      } else {
+        addDebugLog('👻 No authenticated user found');
+        setSnugClientStatus('success'); // Just mark as success if no user
+        return;
+      }
 
-    return () => clearTimeout(timer);
-  }, [createSnugClientForUser]);
+      // Validate user data
+      if (!firstName || !lastName || !email) {
+        addDebugLog('❌ Missing required user data - skipping Snug client creation');
+        setSnugClientStatus('error');
+        setLastError('Missing required user information');
+        return;
+      }
+
+      addDebugLog(`✅ User data ready from: ${userSource}`);
+
+      setIsCreatingSnugClient(true);
+      setSnugClientStatus('pending');
+      addDebugLog('🚀 Starting GetSnug client creation process');
+
+      try {
+        // Create GetSnug client for all authenticated users
+        addDebugLog(`📝 Creating Snug client for: ${firstName} ${lastName} (${email})`);
+        const result = await createSnugClientDirect(firstName, lastName, email);
+        
+        if (result.success) {
+          addDebugLog('✅ GetSnug client created successfully!');
+          setSnugClientStatus('success');
+          
+          // Update sessionStorage with snugClientId if successful and it's a Google user
+          if (googleUser) {
+            googleUser.snugClientId = result.data?.id || 'created';
+            sessionStorage.setItem('user', JSON.stringify(googleUser));
+          }
+        } else {
+          // Check if it's just an API availability issue (common in dev)
+          if (result.error === 'API not available') {
+            addDebugLog('📝 Snug API not available - this is normal in development');
+            setSnugClientStatus('success'); // Don't show error for dev environment
+          } else if (result.error?.includes('already exists')) {
+            addDebugLog('✅ GetSnug client already exists');
+            setSnugClientStatus('success');
+          } else {
+            addDebugLog(`⚠️ Failed to create GetSnug client: ${result.error}`);
+            setSnugClientStatus('error');
+            setLastError(result.error || 'Unknown error');
+          }
+        }
+        
+      } catch (error: any) {
+        addDebugLog(`❌ Unexpected error: ${error.message}`);
+        setSnugClientStatus('error');
+        setLastError(error.message);
+      } finally {
+        setIsCreatingSnugClient(false);
+        addDebugLog('🏁 GetSnug client process completed');
+      }
+    };
+
+    createSnugClientForUser();
+  }, [user, isLoaded]);
 
   // Manual retry function
   const handleRetry = () => {
     setRetryCount(0);
-    createSnugClientForUser();
+    setSnugClientStatus('pending');
+    setLastError(null);
+    
+    // Trigger the effect again by creating a new execution context
+    const retryCreateClient = async () => {
+      // Check for Google SSO user data in sessionStorage first
+      const sessionUserData = sessionStorage.getItem('user');
+      let googleUser = null;
+      
+      if (sessionUserData) {
+        try {
+          googleUser = JSON.parse(sessionUserData);
+        } catch (e) {
+          console.log('Failed to parse sessionStorage user data');
+        }
+      }
+      
+      // Extract user information
+      let firstName: string = '';
+      let lastName: string = '';
+      let email: string = '';
+      
+      // Check Google SSO user first
+      if (googleUser && googleUser.authMethod === 'google') {
+        firstName = googleUser.firstName || '';
+        lastName = googleUser.lastName || '';
+        email = googleUser.email || '';
+      } else if (user) {
+        firstName = user.firstName || '';
+        lastName = user.lastName || '';
+        email = user.email || '';
+      }
+
+      if (!firstName || !lastName || !email) {
+        setSnugClientStatus('error');
+        setLastError('Missing required user information');
+        return;
+      }
+
+      setIsCreatingSnugClient(true);
+
+      try {
+        const result = await createSnugClientDirect(firstName, lastName, email);
+        
+        if (result.success) {
+          setSnugClientStatus('success');
+          
+          // Update sessionStorage with snugClientId if successful and it's a Google user
+          if (googleUser) {
+            googleUser.snugClientId = result.data?.id || 'created';
+            sessionStorage.setItem('user', JSON.stringify(googleUser));
+          }
+        } else {
+          if (result.error === 'API not available') {
+            setSnugClientStatus('success'); // Don't show error for dev environment
+          } else if (result.error?.includes('already exists')) {
+            setSnugClientStatus('success');
+          } else {
+            setSnugClientStatus('error');
+            setLastError(result.error || 'Unknown error');
+          }
+        }
+        
+      } catch (error: any) {
+        setSnugClientStatus('error');
+        setLastError(error.message);
+      } finally {
+        setIsCreatingSnugClient(false);
+      }
+    };
+
+    retryCreateClient();
   };
 
   return (

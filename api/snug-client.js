@@ -56,7 +56,7 @@ module.exports = async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: SNUG_EMAIL,
+        username: SNUG_EMAIL,
         password: SNUG_PASSWORD
       })
     });
@@ -118,7 +118,7 @@ module.exports = async function handler(req, res) {
     }
 
     const udId = userData.ud_id;
-    const proGroupId = userData.professional_group_role_user_data.professional_group.id;
+    const proGroupId = userData.professional_group_role_user_data.professional_group_id;
     
     console.log(`✅ Profile retrieved - UD ID: ${udId}, Pro Group ID: ${proGroupId}`);
 
@@ -127,28 +127,15 @@ module.exports = async function handler(req, res) {
     const clientData = {
       client_data: {
         full_name: `${firstName} ${lastName}`,
-        contact_email: email,
-        estate_plan_foundation: "will",
-        value_of_assets: "up_to_five",
-        household_state_code: "NY",
-        show_household_onboarding_requirement: false,
-        blended_family: false,
-        children: "none"
+        contact_email: email
       },
       client_role: {
-        recommendation_trust: false,
-        recommendation_will: true,
-        recommendation_fpoa: false,
-        recommendation_hcd: false,
         will_price: 29999,
-        trust_price: 59999,
-        professional_pricing_option: "DEFAULT",
-        block_will: false,
-        block_trust: false
+        trust_price: 59999
       }
     };
 
-    const clientResponse = await fetch(`${API_BASE_URL}/api/v3/${udId}/pro-group/${proGroupId}/households/`, {
+    const clientResponse = await fetch(`${API_BASE_URL}/api/v3/${udId}/pro-group/${proGroupId}/pro-people-roles/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

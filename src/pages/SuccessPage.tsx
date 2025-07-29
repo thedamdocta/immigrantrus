@@ -1,9 +1,9 @@
-import SuccessMessageDebug from "@/components/ui/success-message-debug";
+import SuccessMessage from "@/components/ui/success-message";
 
 export default function SuccessPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <SuccessMessageDebug />
+      <SuccessMessage />
     </div>
   );
 }

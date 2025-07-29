@@ -28,7 +28,7 @@ A culturally resonant, SEO-optimized landing page for a Caribbean-led immigratio
 
 ### Success Metrics
 - Fast page load
-- Automated notifications to marlene@fordelaw.org
+- Automated notifications to m*****@******.org
 - Successful client data push to Docketwise
 - Redirect to Snug for estate planning
 - High conversion rate via form

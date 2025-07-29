@@ -53,7 +53,7 @@ Sends:
 
 Welcome email to client
 
-Internal notification to marlene@fordelaw.org
+Internal notification to m*****@******.org
 
 ⚖️ Docketwise Integration
 Automatically pushes immigration leads via API or iframe
@@ -84,7 +84,7 @@ Attorney Advertising. Prior results do not guarantee a similar outcome. This sit
 
 📬 Contact
 For legal inquiries:
-📧 marlene@fordelaw.org
+📧 m*****@******.org
 🌐 immigrantsrus.org
 
 🧠 BMad Method

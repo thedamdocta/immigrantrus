@@ -25,8 +25,7 @@ CLERK_SECRET_KEY=sk_test_4mZIjJYkYeDw2NSBv4FjMpURQ8JMfezZtQQ5AGKXF1
 CLERK_WEBHOOK_SECRET=whsec_[GET_FROM_CLERK_DASHBOARD]
 
 # Snug API Configuration
-VITE_SNUG_EMAIL=marlene@fordelaw.org
-VITE_SNUG_PASSWORD=Godfrey2025$
+VITE_SNUG_EMAIL=m*****@******.org
 VITE_SNUG_BASE_URL=https://auth.getsnug.com
 ```
 

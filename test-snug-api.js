@@ -26,8 +26,9 @@ const testSnugAPI = async () => {
   try {
     console.log('\n🔄 Using CORRECT API endpoints from documentation...');
     
-    // Try multiple possible base URLs
+    // Try multiple possible base URLs, starting with the new auth domain
     const baseUrls = [
+      'https://auth.getsnug.com',        // Updated base URL
       'https://api.staging.getsnug.com', // From documentation
       'https://api.getsnug.com',         // From documentation
       'https://staging.api.getsnug.com', // Alternative staging

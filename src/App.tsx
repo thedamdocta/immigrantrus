@@ -1,36 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { ClerkProvider } from '@clerk/clerk-react'
+import { AuthProvider } from './contexts/AuthContext'
 import HomePage from './pages/HomePage'
 import SuccessPage from './pages/SuccessPage'
-
-const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
-
-// Check if we have a valid Clerk key (not placeholder)
-const hasValidClerkKey = clerkPubKey && clerkPubKey !== 'pk_test_your_key_here' && clerkPubKey.startsWith('pk_test_') || clerkPubKey.startsWith('pk_live_')
+import OAuthSuccessPage from './pages/OAuthSuccessPage'
+import ProcessingPage from './pages/ProcessingPage'
 
 function App() {
-  // If no valid Clerk key, run without Clerk (demo mode)
-  if (!hasValidClerkKey) {
-    console.warn('No valid Clerk key found. Running in demo mode. Set VITE_CLERK_PUBLISHABLE_KEY in .env.local for full functionality.')
-    return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/success" element={<SuccessPage />} />
-        </Routes>
-      </Router>
-    )
-  }
-
+  console.log('🚀 App running with native Google Sign-In')
+  
   return (
-    <ClerkProvider publishableKey={clerkPubKey}>
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/success" element={<SuccessPage />} />
+          <Route path="/oauth-success" element={<OAuthSuccessPage />} />
+          <Route path="/processing" element={<ProcessingPage />} />
         </Routes>
       </Router>
-    </ClerkProvider>
+    </AuthProvider>
   )
 }
 

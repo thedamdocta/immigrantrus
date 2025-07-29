@@ -3,45 +3,47 @@ export interface SnugClientData {
   client_data: {
     full_name: string;
     contact_email: string;
-    estate_plan_foundation: string;
-    value_of_assets: string;
-    household_state_code: string;
-    show_household_onboarding_requirement: boolean;
-    blended_family: boolean;
-    children: string;
   };
   client_role: {
-    recommendation_trust: boolean;
-    recommendation_will: boolean;
-    recommendation_fpoa: boolean;
-    recommendation_hcd: boolean;
-    professional_pricing_option: string;
-    block_will: boolean;
-    block_trust: boolean;
+    will_price?: number;
+    trust_price?: number;
+  };
+  spouse_data?: {
+    full_name?: string;
+    contact_email?: string;
   };
 }
 
+export interface SnugUserProfile {
+  ud_id: string;
+  pro_group_id: string;
+  role: string;
+}
+
 export class SnugApiService {
-  private baseUrl: string;
+  private authBaseUrl: string;
+  private apiBaseUrl: string;
   private email: string;
   private password: string;
   private accessToken: string | null = null;
+  private userProfile: SnugUserProfile | null = null;
 
   constructor() {
-    this.baseUrl = import.meta.env.VITE_SNUG_BASE_URL || 'https://api.getsnug.com';
+    this.authBaseUrl = 'https://auth.getsnug.com';
+    this.apiBaseUrl = 'https://api.getsnug.com';
     this.email = import.meta.env.VITE_SNUG_EMAIL || '';
     this.password = import.meta.env.VITE_SNUG_PASSWORD || '';
   }
 
-  // Authenticate with Snug API
+  // Step 1: Authenticate with Snug API to get JWT token
   async authenticate(): Promise<void> {
-    const response = await fetch(`${this.baseUrl}/auth/login`, {
+    const response = await fetch(`${this.authBaseUrl}/api/token/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: this.email,
+        username: this.email,
         password: this.password,
       }),
     });
@@ -51,16 +53,50 @@ export class SnugApiService {
     }
 
     const data = await response.json();
-    this.accessToken = data.access_token;
+    this.accessToken = data.access;
   }
 
-  // Create a new client in Snug
+  // Step 2: Get user profile and professional group information
+  async getUserProfile(): Promise<SnugUserProfile> {
+    if (!this.accessToken) {
+      await this.authenticate();
+    }
+
+    const response = await fetch(`${this.apiBaseUrl}/api/v3/user-data/?expand=professional_group_role`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${this.accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to get user profile: ${response.statusText}`);
+    }
+
+    const profileData = await response.json();
+    this.userProfile = {
+      ud_id: profileData.data.ud_id,
+      pro_group_id: profileData.data.professional_group_role_user_data.professional_group_id,
+      role: profileData.data.professional_group_role_user_data.role
+    };
+
+    return this.userProfile;
+  }
+
+  // Step 3: Create a new client in Snug using Pro People Roles endpoint
+  // ⚠️ TEMPORARY IMPLEMENTATION - Expected to change in 1-2 weeks
+  // See docs/snug-api-temporary-implementation.md for details
   async createClient(clientData: SnugClientData): Promise<any> {
     if (!this.accessToken) {
       await this.authenticate();
     }
 
-    const response = await fetch(`${this.baseUrl}/clients`, {
+    if (!this.userProfile) {
+      await this.getUserProfile();
+    }
+
+    const response = await fetch(`${this.apiBaseUrl}/api/v3/${this.userProfile!.ud_id}/pro-group/${this.userProfile!.pro_group_id}/pro-people-roles/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,27 +112,15 @@ export class SnugApiService {
     return response.json();
   }
 
-  // Create default client data from user info
+  // Create default client data from user info (simplified structure)
   static createDefaultClientData(firstName: string, lastName: string, email: string): SnugClientData {
     return {
       client_data: {
         full_name: `${firstName} ${lastName}`,
-        contact_email: email,
-        estate_plan_foundation: "will",
-        value_of_assets: "up_to_five",
-        household_state_code: "NY",
-        show_household_onboarding_requirement: false,
-        blended_family: false,
-        children: "none"
+        contact_email: email
       },
       client_role: {
-        recommendation_trust: false,
-        recommendation_will: true,
-        recommendation_fpoa: false,
-        recommendation_hcd: false,
-        professional_pricing_option: "DEFAULT",
-        block_will: false,
-        block_trust: false
+        // Optional pricing - leave empty to use defaults
       }
     };
   }

@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Content Security Policy for Clerk integration - More permissive for development -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.accounts.dev https://*.clerk.com https://clerk-telemetry.com https://*.cloudflare.com https://js.clerk.com https://clerk.clerk.accounts.dev https://challenges.cloudflare.com https://accounts.google.com https://*.google.com https://apis.google.com https://www.googleapis.com;
+      connect-src 'self' https://*.clerk.accounts.dev https://*.clerk.com https://clerk-telemetry.com https://api.getsnug.com https://auth.getsnug.com https://*.cloudflare.com https://js.clerk.com https://challenges.cloudflare.com https://accounts.google.com https://*.google.com https://www.googleapis.com https://oauth2.googleapis.com;
+      worker-src 'self' blob:;
+      img-src 'self' data: https: blob:;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.clerk.com https://accounts.google.com;
+      font-src 'self' https://fonts.gstatic.com https://*.clerk.com;
+      frame-src 'self' https://accounts.google.com https://*.google.com https://*.clerk.com https://*.clerk.accounts.dev https://challenges.cloudflare.com;
+      object-src 'none';
+      base-uri 'self';
+    " />
+    
     <title>Immigrants R Us - Immigration & Estate Planning Law Firm</title>
     <meta name="description" content="Caribbean-led immigration and estate planning law firm serving NYC. Immigrants helping immigrants with visa applications, green cards, and estate planning services." />
     

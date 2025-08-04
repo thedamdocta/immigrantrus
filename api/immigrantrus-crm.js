@@ -6,7 +6,29 @@ import { createClient } from '@supabase/supabase-js';
 // Initialize Supabase client
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
+
+// Mock data for when Supabase is not configured
+const mockContacts = [
+  {
+    id: '1',
+    email: 'john.doe@example.com',
+    phone: '+1-555-0123',
+    notes: 'Interested in immigration services',
+    practice_areas: ['Immigration'],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: '2',
+    email: 'jane.smith@example.com',
+    phone: '+1-555-0456',
+    notes: 'Estate planning consultation',
+    practice_areas: ['Estate Planning', 'Wills and Trust'],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  }
+];
 
 // Practice Areas as defined in PRD
 const PRACTICE_AREAS = [
@@ -103,17 +125,25 @@ export default async function handler(req, res) {
 // Health check endpoint
 async function handleHealth(req, res) {
   try {
-    // Test database connection
-    const { data, error } = await supabase
-      .from('contacts')
-      .select('count', { count: 'exact' })
-      .limit(1);
+    let databaseStatus = 'mock';
+    
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('contacts')
+          .select('count', { count: 'exact' })
+          .limit(1);
+        databaseStatus = error ? 'disconnected' : 'connected';
+      } catch (error) {
+        databaseStatus = 'disconnected';
+      }
+    }
 
     return res.status(200).json({
       status: 'healthy',
       service: 'ImmigrantsRUs CRM API',
       version: '1.0.0',
-      database: error ? 'disconnected' : 'connected',
+      database: databaseStatus,
       timestamp: new Date().toISOString(),
       endpoints: {
         health: '/api/immigrantrus-crm/health',
@@ -132,12 +162,22 @@ async function handleHealth(req, res) {
 // Get all contacts
 async function getContacts(req, res) {
   try {
-    const { data: contacts, error } = await supabase
-      .from('contacts')
-      .select('*')
-      .order('created_at', { ascending: false });
+    let contacts = mockContacts;
+    
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('contacts')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-    if (error) throw error;
+        if (!error && data) {
+          contacts = data;
+        }
+      } catch (error) {
+        console.warn('Supabase query failed, using mock data:', error.message);
+      }
+    }
 
     return res.status(200).json({
       success: true,

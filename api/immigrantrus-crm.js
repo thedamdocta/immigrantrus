@@ -1,0 +1,252 @@
+// ImmigrantsRUs CRM API - Vercel Serverless Functions
+// This provides the core CRM functionality as specified in the PRD
+
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Practice Areas as defined in PRD
+const PRACTICE_AREAS = [
+  'Wills and Trust',
+  'Estate Planning', 
+  'Immigration',
+  'Credit Repair',
+  'Mortgages',
+  'Personal Injury',
+  'Real Estate'
+];
+
+// CORS headers for all responses
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+export default async function handler(req, res) {
+  // Handle CORS preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).json({});
+  }
+
+  // Add CORS headers to all responses
+  Object.entries(corsHeaders).forEach(([key, value]) => {
+    res.setHeader(key, value);
+  });
+
+  const { pathname } = new URL(req.url, `http://${req.headers.host}`);
+  const path = pathname.replace('/api/immigrantrus-crm', '');
+
+  try {
+    // Route handling
+    switch (path) {
+      case '/health':
+        return handleHealth(req, res);
+      
+      case '/contacts':
+        if (req.method === 'GET') return getContacts(req, res);
+        if (req.method === 'POST') return createContact(req, res);
+        break;
+        
+      case '/practice-areas':
+        return getPracticeAreas(req, res);
+        
+      default:
+        return res.status(404).json({ 
+          error: 'Endpoint not found',
+          available_endpoints: [
+            '/health - Health check',
+            '/contacts - GET: List contacts, POST: Create contact',
+            '/practice-areas - GET: List available practice areas'
+          ]
+        });
+    }
+  } catch (error) {
+    console.error('API Error:', error);
+    return res.status(500).json({ 
+      error: 'Internal server error',
+      message: error.message 
+    });
+  }
+}
+
+// Health check endpoint
+async function handleHealth(req, res) {
+  try {
+    // Test database connection
+    const { data, error } = await supabase
+      .from('contacts')
+      .select('count', { count: 'exact' })
+      .limit(1);
+
+    return res.status(200).json({
+      status: 'healthy',
+      service: 'ImmigrantsRUs CRM API',
+      version: '1.0.0',
+      database: error ? 'disconnected' : 'connected',
+      timestamp: new Date().toISOString(),
+      endpoints: {
+        health: '/api/immigrantrus-crm/health',
+        contacts: '/api/immigrantrus-crm/contacts',
+        practice_areas: '/api/immigrantrus-crm/practice-areas'
+      }
+    });
+  } catch (error) {
+    return res.status(503).json({
+      status: 'unhealthy',
+      error: error.message
+    });
+  }
+}
+
+// Get all contacts
+async function getContacts(req, res) {
+  try {
+    const { data: contacts, error } = await supabase
+      .from('contacts')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    return res.status(200).json({
+      success: true,
+      data: contacts,
+      count: contacts.length
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+}
+
+// Create new contact
+async function createContact(req, res) {
+  try {
+    const { email, phone, notes, practiceAreas } = req.body;
+
+    // Validation
+    if (!email || !phone) {
+      return res.status(400).json({
+        success: false,
+        error: 'Email and phone are required fields'
+      });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid email format'
+      });
+    }
+
+    // Validate practice areas if provided
+    if (practiceAreas && Array.isArray(practiceAreas)) {
+      const invalidAreas = practiceAreas.filter(area => !PRACTICE_AREAS.includes(area));
+      if (invalidAreas.length > 0) {
+        return res.status(400).json({
+          success: false,
+          error: `Invalid practice areas: ${invalidAreas.join(', ')}`,
+          valid_areas: PRACTICE_AREAS
+        });
+      }
+    }
+
+    // Check if contact already exists
+    const { data: existingContact } = await supabase
+      .from('contacts')
+      .select('id')
+      .eq('email', email)
+      .single();
+
+    if (existingContact) {
+      return res.status(409).json({
+        success: false,
+        error: 'Contact with this email already exists'
+      });
+    }
+
+    // Create contact
+    const contactData = {
+      email,
+      phone,
+      notes: notes || '',
+      practice_areas: practiceAreas || [],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    };
+
+    const { data: newContact, error } = await supabase
+      .from('contacts')
+      .insert([contactData])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    // Also sync to GetSnug CRM (as required by PRD)
+    try {
+      await syncToGetSnug({ email, phone });
+    } catch (getSnugError) {
+      console.warn('GetSnug sync failed:', getSnugError.message);
+      // Don't fail the request if GetSnug sync fails
+    }
+
+    return res.status(201).json({
+      success: true,
+      message: 'Contact created successfully',
+      data: newContact
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+}
+
+// Get practice areas
+async function getPracticeAreas(req, res) {
+  return res.status(200).json({
+    success: true,
+    data: PRACTICE_AREAS,
+    count: PRACTICE_AREAS.length
+  });
+}
+
+// Sync to GetSnug CRM (as required by PRD)
+async function syncToGetSnug({ email, phone }) {
+  const getSnugUrl = process.env.GETSNUG_API_URL || 'https://api.getsnug.com/v1/contacts';
+  const getSnugApiKey = process.env.GETSNUG_API_KEY;
+
+  if (!getSnugApiKey) {
+    throw new Error('GetSnug API key not configured');
+  }
+
+  const response = await fetch(getSnugUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getSnugApiKey}`
+    },
+    body: JSON.stringify({
+      email,
+      phone,
+      source: 'ImmigrantsRUs_CRM'
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`GetSnug sync failed: ${response.statusText}`);
+  }
+
+  return await response.json();
+}

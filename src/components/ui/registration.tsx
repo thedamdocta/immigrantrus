@@ -23,6 +23,7 @@ export default function SignupForm() {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     password: "",
     terms: false,
   });
@@ -36,6 +37,7 @@ export default function SignupForm() {
     if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
     if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
     if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Valid email is required";
+    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
     if (formData.password.length < 6) newErrors.password = "Password must be at least 6 characters";
     if (!formData.terms) newErrors.terms = "You must accept the terms";
     return newErrors;
@@ -44,7 +46,7 @@ export default function SignupForm() {
   // Create Snug client helper function using server-side API
   const createSnugClient = async (firstName: string, lastName: string, email: string) => {
     try {
-      console.log("Creating Snug client via server API...");
+      console.log("🔄 Creating Snug client for registration user...");
       // Use the correct API endpoint - in production this will be the Vercel API route
       const apiUrl = import.meta.env.PROD 
         ? '/api/snug-client' 
@@ -64,14 +66,46 @@ export default function SignupForm() {
       
       if (response.ok) {
         const result = await response.json();
-        console.log("Snug client created successfully:", result);
+        console.log("✅ Snug client created successfully:", result);
       } else {
         const errorData = await response.json();
-        console.error("Failed to create Snug client:", errorData);
+        console.log("⚠️ Snug client creation failed (non-blocking):", errorData);
       }
     } catch (error) {
-      console.error("Failed to create Snug client:", error);
+      console.log("⚠️ Snug client creation error (non-blocking):", error);
       // Don't throw error - we don't want to block user registration if Snug fails
+    }
+  };
+
+  // Create ImmigrantrusCRM contact helper function (independent, non-blocking)
+  const createCrmContact = async (email: string, phone: string) => {
+    try {
+      console.log("🔄 Creating ImmigrantrusCRM contact for registration user...");
+      // CRM API endpoint - will be running on port 3001
+      const crmApiUrl = 'http://localhost:3001/api/contacts';
+      
+      const response = await fetch(crmApiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          phone,
+          source: 'website_registration'
+        })
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        console.log("✅ ImmigrantrusCRM contact created successfully:", result);
+      } else {
+        const errorData = await response.json();
+        console.log("⚠️ ImmigrantrusCRM contact creation failed (non-blocking):", errorData);
+      }
+    } catch (error) {
+      console.log("⚠️ ImmigrantrusCRM contact creation error (non-blocking):", error);
+      // Don't throw error - we don't want to block user registration if CRM fails
     }
   };
 
@@ -99,8 +133,11 @@ export default function SignupForm() {
         authMethod: 'manual' as const
       });
 
-      // Create Snug client
-      await createSnugClient(formData.firstName, formData.lastName, formData.email);
+      // Create contacts in both systems (independent, non-blocking)
+      await Promise.allSettled([
+        createSnugClient(formData.firstName, formData.lastName, formData.email),
+        createCrmContact(formData.email, formData.phone)
+      ]);
       
       // Navigate to success page
       navigate("/success");
@@ -173,6 +210,19 @@ export default function SignupForm() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
               {errors.email && <p className="text-xs md:text-xs text-destructive">{errors.email}</p>}
+            </div>
+
+            <div className="space-y-1 md:space-y-1">
+              <Label htmlFor="phone" className="text-sm">Phone number</Label>
+              <Input
+                id="phone"
+                placeholder="Phone number"
+                type="tel"
+                className="h-9 md:h-9"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              />
+              {errors.phone && <p className="text-xs md:text-xs text-destructive">{errors.phone}</p>}
             </div>
 
             <div className="space-y-1 md:space-y-1">

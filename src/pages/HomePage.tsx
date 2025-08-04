@@ -726,7 +726,7 @@ export default function HomePage() {
                 <li className="pt-2 border-t border-gray-700">
                   <a 
                     href="/staff-portal" 
-                    className="hover:text-lawfirm-accent transition-colors text-xs"
+                    className="hover:text-lawfirm-accent transition-colors text-xs font-medium"
                   >
                     Staff Portal →
                   </a>

@@ -54,6 +54,15 @@ export default async function handler(req, res) {
         
       case '/auth/challenge':
         return handleAuthChallenge(req, res);
+        
+      case '/auth/login':
+        return handleAuthLogin(req, res);
+        
+      case '/auth/logout':
+        return handleAuthLogout(req, res);
+        
+      case '/auth/renew':
+        return handleAuthRenew(req, res);
       
       case '/contacts':
         if (req.method === 'GET') return getContacts(req, res);
@@ -62,6 +71,12 @@ export default async function handler(req, res) {
         
       case '/practice-areas':
         return getPracticeAreas(req, res);
+        
+      case '/rest/metadata':
+        return handleMetadata(req, res);
+        
+      case '/rest/workspaces':
+        return handleWorkspaces(req, res);
         
       default:
         return res.status(404).json({ 
@@ -353,5 +368,86 @@ async function handleAuthChallenge(req, res) {
     success: true,
     challenge: 'simple-auth',
     message: 'Authentication not required in demo mode'
+  });
+}
+
+// Handle authentication login (TwentyCRM compatibility)
+async function handleAuthLogin(req, res) {
+  // For demo purposes, accept any login
+  return res.status(200).json({
+    success: true,
+    user: {
+      id: 'staff-user-1',
+      email: 'staff@immigrantsrus.org',
+      firstName: 'Staff',
+      lastName: 'User',
+      workspaceId: 'immigrantsrus-workspace'
+    },
+    tokens: {
+      accessToken: 'demo-access-token',
+      refreshToken: 'demo-refresh-token'
+    }
+  });
+}
+
+// Handle authentication logout (TwentyCRM compatibility)
+async function handleAuthLogout(req, res) {
+  return res.status(200).json({
+    success: true,
+    message: 'Logged out successfully'
+  });
+}
+
+// Handle authentication token renewal (TwentyCRM compatibility)
+async function handleAuthRenew(req, res) {
+  return res.status(200).json({
+    success: true,
+    tokens: {
+      accessToken: 'demo-access-token-renewed',
+      refreshToken: 'demo-refresh-token-renewed'
+    }
+  });
+}
+
+// Handle metadata requests (TwentyCRM compatibility)
+async function handleMetadata(req, res) {
+  return res.status(200).json({
+    success: true,
+    data: {
+      objects: [
+        {
+          id: 'contact',
+          nameSingular: 'contact',
+          namePlural: 'contacts',
+          labelSingular: 'Contact',
+          labelPlural: 'Contacts',
+          fields: [
+            { name: 'id', type: 'UUID', label: 'ID' },
+            { name: 'email', type: 'EMAIL', label: 'Email' },
+            { name: 'phone', type: 'PHONE', label: 'Phone' },
+            { name: 'notes', type: 'TEXT', label: 'Notes' },
+            { name: 'practiceAreas', type: 'MULTI_SELECT', label: 'Practice Areas' }
+          ]
+        }
+      ]
+    }
+  });
+}
+
+// Handle workspaces requests (TwentyCRM compatibility)
+async function handleWorkspaces(req, res) {
+  return res.status(200).json({
+    success: true,
+    data: {
+      workspaces: [
+        {
+          id: 'immigrantsrus-workspace',
+          displayName: 'ImmigrantsRUs',
+          domainName: 'immigrantsrus.org',
+          subdomain: 'staff-portal',
+          logo: '/staff-portal/images/icons/android/android-launchericon-48-48.png'
+        }
+      ]
+    }
   });
 }

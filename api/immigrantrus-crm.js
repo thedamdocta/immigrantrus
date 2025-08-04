@@ -46,6 +46,15 @@ export default async function handler(req, res) {
       case '/health':
         return handleHealth(req, res);
       
+      case '/graphql':
+        return handleGraphQL(req, res);
+        
+      case '/auth/verify':
+        return handleAuthVerify(req, res);
+        
+      case '/auth/challenge':
+        return handleAuthChallenge(req, res);
+      
       case '/contacts':
         if (req.method === 'GET') return getContacts(req, res);
         if (req.method === 'POST') return createContact(req, res);
@@ -59,6 +68,9 @@ export default async function handler(req, res) {
           error: 'Endpoint not found',
           available_endpoints: [
             '/health - Health check',
+            '/graphql - GraphQL endpoint for TwentyCRM',
+            '/auth/verify - Authentication verification',
+            '/auth/challenge - Authentication challenge',
             '/contacts - GET: List contacts, POST: Create contact',
             '/practice-areas - GET: List available practice areas'
           ]
@@ -249,4 +261,97 @@ async function syncToGetSnug({ email, phone }) {
   }
 
   return await response.json();
+}
+
+// Handle GraphQL requests (TwentyCRM compatibility)
+async function handleGraphQL(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  try {
+    const { query, variables } = req.body;
+    
+    // Basic GraphQL introspection query support
+    if (query && query.includes('__schema')) {
+      return res.status(200).json({
+        data: {
+          __schema: {
+            types: [
+              {
+                name: 'Contact',
+                fields: [
+                  { name: 'id', type: { name: 'ID' } },
+                  { name: 'email', type: { name: 'String' } },
+                  { name: 'phone', type: { name: 'String' } },
+                  { name: 'notes', type: { name: 'String' } },
+                  { name: 'practiceAreas', type: { name: '[String]' } }
+                ]
+              }
+            ]
+          }
+        }
+      });
+    }
+
+    // Handle basic contact queries
+    if (query && query.includes('contacts')) {
+      const { data: contacts, error } = await supabase
+        .from('contacts')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      return res.status(200).json({
+        data: {
+          contacts: contacts.map(contact => ({
+            id: contact.id,
+            email: contact.email,
+            phone: contact.phone,
+            notes: contact.notes,
+            practiceAreas: contact.practice_areas || []
+          }))
+        }
+      });
+    }
+
+    // Default response for unsupported queries
+    return res.status(200).json({
+      data: {},
+      errors: [{ message: 'Query not supported in compatibility mode' }]
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      errors: [{ message: error.message }]
+    });
+  }
+}
+
+// Handle authentication verification (TwentyCRM compatibility)
+async function handleAuthVerify(req, res) {
+  // For now, return a simple success response
+  // In a real implementation, you'd verify JWT tokens here
+  return res.status(200).json({
+    success: true,
+    user: {
+      id: 'staff-user-1',
+      email: 'staff@immigrantsrus.org',
+      firstName: 'Staff',
+      lastName: 'User',
+      workspaceId: 'immigrantsrus-workspace'
+    }
+  });
+}
+
+// Handle authentication challenge (TwentyCRM compatibility)
+async function handleAuthChallenge(req, res) {
+  // For now, return a simple challenge response
+  // In a real implementation, you'd handle proper authentication
+  return res.status(200).json({
+    success: true,
+    challenge: 'simple-auth',
+    message: 'Authentication not required in demo mode'
+  });
 }

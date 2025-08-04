@@ -21,8 +21,20 @@
   },
   "rewrites": [
     {
-      "source": "/staff-portal/(.*)",
-      "destination": "/staff-portal/$1"
+      "source": "/staff-portal/assets/(.*)",
+      "destination": "/staff-portal/assets/$1"
+    },
+    {
+      "source": "/staff-portal/images/(.*)",
+      "destination": "/staff-portal/images/$1"
+    },
+    {
+      "source": "/staff-portal/manifest.json",
+      "destination": "/staff-portal/manifest.json"
+    },
+    {
+      "source": "/staff-portal/mockServiceWorker.js",
+      "destination": "/staff-portal/mockServiceWorker.js"
     },
     {
       "source": "/staff-portal",
@@ -42,6 +54,24 @@
     }
   ],
   "headers": [
+    {
+      "source": "/staff-portal/assets/(.*).js",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    },
+    {
+      "source": "/staff-portal/assets/(.*).css",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/css"
+        }
+      ]
+    },
     {
       "source": "/api/(.*)",
       "headers": [

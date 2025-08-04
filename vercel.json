@@ -22,30 +22,6 @@
   },
   "rewrites": [
     {
-      "source": "/staff-portal/assets/(.*)",
-      "destination": "/staff-portal/assets/$1"
-    },
-    {
-      "source": "/staff-portal/images/(.*)",
-      "destination": "/staff-portal/images/$1"
-    },
-    {
-      "source": "/staff-portal/manifest.json",
-      "destination": "/staff-portal/manifest.json"
-    },
-    {
-      "source": "/staff-portal/mockServiceWorker.js",
-      "destination": "/staff-portal/mockServiceWorker.js"
-    },
-    {
-      "source": "/staff-portal/(.*)",
-      "destination": "/staff-portal/$1"
-    },
-    {
-      "source": "/staff-portal",
-      "destination": "/staff-portal/index.html"
-    },
-    {
       "source": "/api/immigrantrus-crm/(.*)",
       "destination": "/api/immigrantrus-crm?path=$1"
     },
@@ -54,7 +30,11 @@
       "destination": "/api/$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/staff-portal",
+      "destination": "/staff-portal/index.html"
+    },
+    {
+      "source": "/((?!staff-portal|api).*)",
       "destination": "/index.html"
     }
   ],

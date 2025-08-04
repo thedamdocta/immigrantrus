@@ -5,11 +5,14 @@
   "description": "Immigration & Estate Planning website for Caribbean-led law firm",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run copy-staff-portal",
+    "copy-staff-portal": "cp -r staff-portal/* dist/staff-portal/ 2>/dev/null || true",
     "preview": "vite preview",
-    "lint": "eslint . --ext js,jsx,ts,tsx"
+    "lint": "eslint . --ext js,jsx,ts,tsx",
+    "test:crm": "node test-crm-integration.js --run"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.1",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-checkbox": "^1.0.6",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -18,6 +21,8 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
     "@react-oauth/google": "^0.12.2",
+    "@supabase/supabase-js": "^2.53.0",
+    "axios": "^1.11.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cors": "^2.8.5",
@@ -25,11 +30,13 @@
     "embla-carousel-react": "^8.6.0",
     "express": "^5.1.0",
     "framer-motion": "12.23.9",
+    "fs-extra": "^11.3.0",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.290.0",
     "motion-dom": "12.23.9",
     "node-fetch": "^2.7.0",
+    "pg": "^8.16.3",
     "puppeteer": "^24.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -49,5 +56,6 @@
     "tailwindcss": "^3.3.6",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
-  }
+  },
+  "packageManager": "yarn@4.9.2+sha512.1fc009bc09d13cfd0e19efa44cbfc2b9cf6ca61482725eb35bbc5e257e093ebf4130db6dfe15d604ff4b79efd8e1e8e99b25fa7d0a6197c9f9826358d4d65c3c"
 }

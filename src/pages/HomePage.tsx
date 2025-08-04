@@ -723,6 +723,14 @@ export default function HomePage() {
                 <li>(555) 123-4567</li>
                 <li>marlene@fordelaw.org</li>
                 <li>New York, NY</li>
+                <li className="pt-2 border-t border-gray-700">
+                  <a 
+                    href="/staff-portal" 
+                    className="hover:text-lawfirm-accent transition-colors text-xs"
+                  >
+                    Staff Portal →
+                  </a>
+                </li>
               </ul>
             </div>
             <div>

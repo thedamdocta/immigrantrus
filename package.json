@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && npm run copy-staff-portal",
-    "copy-staff-portal": "cp -r staff-portal/* dist/staff-portal/ 2>/dev/null || true",
+    "copy-staff-portal": "mkdir -p dist/staff-portal && cp -r public/staff-portal/* dist/staff-portal/ 2>/dev/null || true",
     "preview": "vite preview",
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "test:crm": "node test-crm-integration.js --run"

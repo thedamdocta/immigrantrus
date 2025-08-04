@@ -37,6 +37,10 @@
       "destination": "/staff-portal/mockServiceWorker.js"
     },
     {
+      "source": "/staff-portal/(.*)",
+      "destination": "/staff-portal/$1"
+    },
+    {
       "source": "/staff-portal",
       "destination": "/staff-portal/index.html"
     },

@@ -1,2 +1,4 @@
 # Ignore Dockerfile so Railway cannot auto-select Docker
 twenty-crm/Dockerfile
+# Ignore all nested Dockerfiles so Railway never falls back to Docker
+**/Dockerfile

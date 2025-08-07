@@ -97,3 +97,4 @@ PM → Milestones & Stories
 Architect → Stack & System Layout
 
 Now ready for Dev Agents to begin build.
+# Global Git configuration updated to marleneforde

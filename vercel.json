@@ -1,5 +1,4 @@
 {
-  "_comment": "Updated to fix staff portal routing - 2025-01-08",
   "buildCommand": "npm run build",
   "installCommand": "npm ci",
   "outputDirectory": "dist",
